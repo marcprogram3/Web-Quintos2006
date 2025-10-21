@@ -128,7 +128,7 @@
     }
     .news-card.active {
       opacity: 1;
-      position: слав relative;
+      position: relative;
     }
     .news-image {
       width: 100%;
@@ -161,6 +161,13 @@
       object-fit: contain;
       border-radius: 10px 10px 0 0;
     }
+    .escut-text {
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+      font-size: 0.875rem;
+      text-align: center;
+      margin-top: 0.25rem;
+    }
     @keyframes modalPop {
       0% { transform: scale(0.95) translateY(20px); opacity: 0; }
       100% { transform: scale(1) translateY(0); opacity: 1; }
@@ -187,6 +194,10 @@
       }
       header img[alt="Escut"] {
         width: 4rem;
+      }
+      .escut-text {
+        font-size: 0.75rem;
+        margin-top: 0.125rem;
       }
       .info-icon {
         width: 2.5rem;
@@ -288,9 +299,12 @@
         <i class="fas fa-circle-info text-lg"></i>
       </div>
       <img src="logo-quintos-2006.png" alt="Logo" class="max-w-sm md:max-w-md mx-auto">
-      <a href="https://www.ametllamar.cat/ajuntament/inici/" target="_blank">
-        <img src="escut-ametlla.png" alt="Escut" class="w-20 md:w-24 hover:scale-105 transition-transform">
-      </a>
+      <div class="flex flex-col items-center">
+        <a href="https://www.ametllamar.cat/ajuntament/inici/" target="_blank">
+          <img src="escut-ametlla.png" alt="Escut" class="w-20 md:w-24 hover:scale-105 transition-transform">
+        </a>
+        <p class="escut-text">Ajuntament de l'Ametlla de Mar</p>
+      </div>
     </div>
   </header>
 
@@ -307,7 +321,7 @@
                 <img src="logo-quintos-2006.png" alt="Logo Quintos" class="w-10 h-10 mr-2">
                 <h3 class="text-xl font-bold text-gray-800">Instagram Oficial Actiu</h3>
               </div>
-              <p class="text-gray-600 text-sm mb-2"><i class="fas fa-calendar-alt mr-2"></i>21 octubre 2025</p>
+              <p class="text-gray-600 text-sm mb-2"><i class="fas fa-calendar-alt mr-2"></i>21 d'octubre 2025</p>
               <p class="text-gray-700 text-sm mb-4">Segueix <strong>@quintos2006_</strong> per vídeos i fotos exclusives!</p>
               <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary inline-flex items-center text-sm">
                 <i class="fab fa-instagram mr-2"></i> Segueix-nos
