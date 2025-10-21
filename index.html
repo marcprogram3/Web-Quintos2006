@@ -67,6 +67,7 @@
       padding: 8px 12px !important;
       display: flex !important;
       align-items: center !important;
+      touch-action: auto !important;
     }
     .fc-event:hover {
       transform: translateY(-3px) !important;
@@ -127,7 +128,7 @@
     }
     .news-card.active {
       opacity: 1;
-      position: relative;
+      position: слав relative;
     }
     .news-image {
       width: 100%;
@@ -150,6 +151,8 @@
       max-width: 600px;
       max-height: 90vh;
       overflow-y: auto;
+      overflow-x: hidden;
+      width: 100%;
       animation: modalPop 0.5s ease-out;
     }
     .modal-image {
@@ -229,9 +232,11 @@
       }
       .modal-content {
         max-width: 90vw;
+        width: 100%;
+        overflow-x: hidden;
       }
       .modal-image {
-        height: 240px;
+        height: 200px;
       }
       .modal-content .p-8 {
         padding: 1rem;
@@ -241,6 +246,9 @@
       }
       .modal-content .text-sm {
         font-size: 0.75rem;
+      }
+      #eventModal {
+        z-index: 1000;
       }
       .footer-content {
         max-width: 90%;
@@ -423,7 +431,8 @@
 
     // Calendar
     document.addEventListener('DOMContentLoaded', function() {
-      new FullCalendar.Calendar(document.getElementById('calendar'), {
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         initialDate: '2025-10-20',
         locale: 'ca',
@@ -453,7 +462,7 @@
             date: '2025-10-31', 
             extendedProps: { 
               image: 'cartell-castanyada.jpg', 
-              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya, Parc Bon Repòs ', 
+              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya, Parc Bon Repòs', 
               time: '17:30 - 20:30', 
               description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' 
             } 
@@ -487,7 +496,27 @@
           `;
           return { domNodes: [div] };
         }
-      }).render();
+      });
+
+      calendar.render();
+
+      // Suport per a esdeveniments tàctils en mòbils
+      calendarEl.addEventListener('touchstart', function(e) {
+        const target = e.target.closest('.fc-event');
+        if (target) {
+          const eventId = target.getAttribute('data-event-id');
+          const event = calendar.getEventById(eventId);
+          if (event) {
+            document.getElementById('eventTitle').textContent = event.title;
+            document.getElementById('eventDate').textContent = event.start.toLocaleDateString('ca-ES');
+            document.getElementById('eventLocation').textContent = event.extendedProps.location;
+            document.getElementById('eventTime').textContent = event.extendedProps.time;
+            document.getElementById('eventDescription').textContent = event.extendedProps.description;
+            document.getElementById('eventImage').src = event.extendedProps.image;
+            document.getElementById('eventModal').classList.remove('hidden');
+          }
+        }
+      });
     });
 
     // Modals
