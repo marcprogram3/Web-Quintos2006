@@ -452,6 +452,7 @@
         locale: 'ca',
         events: [
           { 
+            id: 'castanyada-2025-10-25',
             title: 'Castanyada', 
             date: '2025-10-25', 
             extendedProps: { 
@@ -462,6 +463,7 @@
             } 
           },
           { 
+            id: 'castanyada-2025-10-26',
             title: 'Castanyada', 
             date: '2025-10-26', 
             extendedProps: { 
@@ -472,6 +474,7 @@
             } 
           },
           { 
+            id: 'castanyada-2025-10-31',
             title: 'Castanyada', 
             date: '2025-10-31', 
             extendedProps: { 
@@ -482,6 +485,7 @@
             } 
           },
           { 
+            id: 'castanyada-2025-11-01',
             title: 'Castanyada', 
             date: '2025-11-01', 
             extendedProps: { 
@@ -516,10 +520,10 @@
 
       // Suport per a esdeveniments tàctils en mòbils
       calendarEl.addEventListener('touchstart', function(e) {
+        e.preventDefault();
         const target = e.target.closest('.fc-event');
         if (target) {
-          const eventId = target.getAttribute('data-event-id');
-          const event = calendar.getEventById(eventId);
+          const event = calendar.getEventById(target.closest('.fc-event').dataset.eventId || target.closest('.fc-event').querySelector('a')?.href?.match(/event-[\w-]+/)?.[0]);
           if (event) {
             document.getElementById('eventTitle').textContent = event.title;
             document.getElementById('eventDate').textContent = event.start.toLocaleDateString('ca-ES');
