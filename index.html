@@ -55,7 +55,6 @@
       border-radius: 16px !important;
       padding: 2rem !important;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
-      touch-action: manipulation !important;
     }
     .fc-event {
       background: linear-gradient(135deg, #dc3545, #c82333) !important;
@@ -378,177 +377,165 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="py-8">
-    <div class="footer-content container mx-auto px-6 text-center text-white">
-      <p class="text-xl font-semibold mb-4">Quintos 2006 - L'Ametlla de Mar</p>
-      <div class="flex justify-center space-x-6 mb-4">
-        <a href="https://www.instagram.com/quintos2006_" target="_blank" class="text-2xl hover:text-blue-400 transition-colors"><i class="fab fa-instagram"></i></a>
-        <a href="mailto:marc.program3@gmail.com" class="text-2xl hover:text-blue-400 transition-colors"><i class="fas fa-envelope"></i></a>
-      </div>
-      <p class="text-sm">© 2025 - Desenvolupat amb ❤️ per marc.program3@gmail.com</p>
-    </div>
-  </footer>
-
-  <!-- MODAL ESDEVENIMENTS -->
-  <div id="eventModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
-    <div class="modal-content p-0 w-full max-w-lg mx-4">
-      <span class="close absolute top-4 right-4 text-2xl cursor-pointer hover:text-gray-600" onclick="closeModal()">&times;</span>
-      <img id="eventImage" class="modal-image" src="" alt="">
-      <div class="p-8">
-        <h2 id="eventTitle" class="text-2xl font-bold mb-4 text-gray-800"></h2>
-        <div class="grid grid-cols-3 gap-4 mb-6 text-sm">
-          <div class="text-center">
-            <i class="fas fa-calendar-day text-red-500 text-lg mb-2"></i>
-            <span id="eventDate" class="font-semibold"></span>
-          </div>
-          <div class="text-center">
-            <i class="fas fa-map-marker-alt text-blue-500 text-lg mb-2"></i>
-            <span id="eventLocation" class="font-semibold"></span>
-          </div>
-          <div class="text-center">
-            <i class="fas fa-clock text-purple-500 text-lg mb-2"></i>
-            <span id="eventTime" class="font-semibold"></span>
-          </div>
+    <!-- FOOTER -->
+    <footer class="py-8">
+      <div class="footer-content container mx-auto px-6 text-center text-white">
+        <p class="text-xl font-semibold mb-4">Quintos 2006 - L'Ametlla de Mar</p>
+        <div class="flex justify-center space-x-6 mb-4">
+          <a href="https://www.instagram.com/quintos2006_" target="_blank" class="text-2xl hover:text-blue-400 transition-colors"><i class="fab fa-instagram"></i></a>
+          <a href="mailto:marc.program3@gmail.com" class="text-2xl hover:text-blue-400 transition-colors"><i class="fas fa-envelope"></i></a>
         </div>
-        <p id="eventDescription" class="text-gray-700 text-sm"></p>
+        <p class="text-sm">© 2025 - Desenvolupat amb ❤️ per marc.program3@gmail.com</p>
+      </div>
+    </footer>
+
+    <!-- MODAL ESDEVENIMENTS -->
+    <div id="eventModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+      <div class="modal-content p-0 w-full max-w-lg mx-4">
+        <span class="close absolute top-4 right-4 text-2xl cursor-pointer hover:text-gray-600" onclick="closeModal()">&times;</span>
+        <img id="eventImage" class="modal-image" src="" alt="">
+        <div class="p-8">
+          <h2 id="eventTitle" class="text-2xl font-bold mb-4 text-gray-800"></h2>
+          <div class="grid grid-cols-3 gap-4 mb-6 text-sm">
+            <div class="text-center">
+              <i class="fas fa-calendar-day text-red-500 text-lg mb-2"></i>
+              <span id="eventDate" class="font-semibold"></span>
+            </div>
+            <div class="text-center">
+              <i class="fas fa-map-marker-alt text-blue-500 text-lg mb-2"></i>
+              <span id="eventLocation" class="font-semibold"></span>
+            </div>
+            <div class="text-center">
+              <i class="fas fa-clock text-purple-500 text-lg mb-2"></i>
+              <span id="eventTime" class="font-semibold"></span>
+            </div>
+          </div>
+          <p id="eventDescription" class="text-gray-700 text-sm"></p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- MODAL INFO -->
-  <div id="infoModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
-    <div class="modal-content p-8 w-full max-w-md mx-4">
-      <span class="close absolute top-4 right-4 text-2xl cursor-pointer hover:text-gray-600" onclick="closeInfoModal()">&times;</span>
-      <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Informació</h2>
-      <div class="space-y-4 text-sm text-gray-700">
-        <p><strong>Objectiu:</strong> Informació oficial dels Quintos 2006 de l'Ametlla de Mar.</p>
-        <p><strong>Privacitat:</strong> No es recolleixen dades personals ni cookies.</p>
-        <p><strong>Contacte:</strong> marc.program3@gmail.com</p>
+    <!-- MODAL INFO -->
+    <div id="infoModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+      <div class="modal-content p-8 w-full max-w-md mx-4">
+        <span class="close absolute top-4 right-4 text-2xl cursor-pointer hover:text-gray-600" onclick="closeInfoModal()">&times;</span>
+        <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Informació</h2>
+        <div class="space-y-4 text-sm text-gray-700">
+          <p><strong>Objectiu:</strong> Informació oficial dels Quintos 2006 de l'Ametlla de Mar.</p>
+          <p><strong>Privacitat:</strong> No es recolleixen dades personals ni cookies.</p>
+          <p><strong>Contacte:</strong> marc.program3@gmail.com</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    // News Carousel
-    const newsCards = document.querySelectorAll('#newsCarousel .news-card');
-    let currentNewsIndex = 0;
-
-    function showNextNews() {
-      newsCards[currentNewsIndex].classList.remove('active');
-      currentNewsIndex = (currentNewsIndex + 1) % newsCards.length;
-      newsCards[currentNewsIndex].classList.add('active');
-    }
-
-    setInterval(showNextNews, 4000);
-    newsCards[currentNewsIndex].classList.add('active');
-
-    // Calendar
-    document.addEventListener('DOMContentLoaded', function() {
-      const calendarEl = document.getElementById('calendar');
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        initialDate: '2025-10-20',
-        locale: 'ca',
-        events: [
-          { 
-            id: 'castanyada-2025-10-25',
-            title: 'Castanyada', 
-            date: '2025-10-25', 
-            extendedProps: { 
-              image: 'cartell-castanyada.jpg', 
-              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', 
-              time: '17:30 - 20:30', 
-              description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' 
-            } 
-          },
-          { 
-            id: 'castanyada-2025-10-26',
-            title: 'Castanyada', 
-            date: '2025-10-26', 
-            extendedProps: { 
-              image: 'cartell-castanyada.jpg', 
-              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', 
-              time: '17:30 - 20:30', 
-              description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' 
-            } 
-          },
-          { 
-            id: 'castanyada-2025-10-31',
-            title: 'Castanyada', 
-            date: '2025-10-31', 
-            extendedProps: { 
-              image: 'cartell-castanyada.jpg', 
-              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya, Parc Bon Repòs', 
-              time: '17:30 - 20:30', 
-              description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' 
-            } 
-          },
-          { 
-            id: 'castanyada-2025-11-01',
-            title: 'Castanyada', 
-            date: '2025-11-01', 
-            extendedProps: { 
-              image: 'cartell-castanyada.jpg', 
-              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', 
-              time: '17:30 - 20:30', 
-              description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' 
-            } 
-          }
-        ],
-        eventClick: info => {
-          document.getElementById('eventTitle').textContent = info.event.title;
-          document.getElementById('eventDate').textContent = info.event.start.toLocaleDateString('ca-ES');
-          document.getElementById('eventLocation').textContent = info.event.extendedProps.location;
-          document.getElementById('eventTime').textContent = info.event.extendedProps.time;
-          document.getElementById('eventDescription').textContent = info.event.extendedProps.description;
-          document.getElementById('eventImage').src = info.event.extendedProps.image;
-          document.getElementById('eventModal').classList.remove('hidden');
-        },
-        eventContent: info => {
-          const div = document.createElement('div');
-          div.className = 'flex items-center';
-          div.dataset.eventId = info.event.id; // Afegim l'ID de l'esdeveniment
-          div.innerHTML = `
-            <img src="${info.event.extendedProps.image}" alt="${info.event.title}" class="w-8 h-8 rounded mr-2">
-            <span>${info.event.title}</span>
-          `;
-          return { domNodes: [div] };
-        }
-      });
-
-      calendar.render();
-
-      // Suport per a esdeveniments tàctils en mòbils
-      calendarEl.addEventListener('touchstart', function(e) {
-        const target = e.target.closest('.fc-event');
-        if (target) {
-          e.preventDefault(); // Evitem el desplaçament només quan es toca un esdeveniment
-          const eventId = target.dataset.eventId;
-          const event = calendar.getEventById(eventId);
-          if (event) {
-            document.getElementById('eventTitle').textContent = event.title;
-            document.getElementById('eventDate').textContent = event.start.toLocaleDateString('ca-ES');
-            document.getElementById('eventLocation').textContent = event.extendedProps.location;
-            document.getElementById('eventTime').textContent = event.extendedProps.time;
-            document.getElementById('eventDescription').textContent = event.extendedProps.description;
-            document.getElementById('eventImage').src = event.extendedProps.image;
-            document.getElementById('eventModal').classList.remove('hidden');
-          }
-        }
-      });
-    });
-
-    // Modals
-    function closeModal() { document.getElementById('eventModal').classList.add('hidden'); }
-    function closeInfoModal() { document.getElementById('infoModal').classList.add('hidden'); }
-    function showInfoModal() { document.getElementById('infoModal').classList.remove('hidden'); }
-    window.onclick = e => {
-      if (e.target.classList.contains('fixed')) {
-        closeModal();
-        closeInfoModal();
+    <script>
+      // News Carousel
+      const newsCards = document.querySelectorAll('#newsCarousel .news-card');
+      let currentNewsIndex = 0;
+      function showNextNews() {
+        newsCards[currentNewsIndex].classList.remove('active');
+        currentNewsIndex = (currentNewsIndex + 1) % newsCards.length;
+        newsCards[currentNewsIndex].classList.add('active');
       }
-    };
-  </script>
+      setInterval(showNextNews, 4000);
+      newsCards[currentNewsIndex].classList.add('active');
+      // Calendar
+      document.addEventListener('DOMContentLoaded', function() {
+        const calendarEl = document.getElementById('calendar');
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          initialDate: '2025-10-20',
+          locale: 'ca',
+          events: [
+            {
+              title: 'Castanyada',
+              date: '2025-10-25',
+              extendedProps: {
+                image: 'cartell-castanyada.jpg',
+                location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya',
+                time: '17:30 - 20:30',
+                description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.'
+              }
+            },
+            {
+              title: 'Castanyada',
+              date: '2025-10-26',
+              extendedProps: {
+                image: 'cartell-castanyada.jpg',
+                location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya',
+                time: '17:30 - 20:30',
+                description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.'
+              }
+            },
+            {
+              title: 'Castanyada',
+              date: '2025-10-31',
+              extendedProps: {
+                image: 'cartell-castanyada.jpg',
+                location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya, Parc Bon Repòs',
+                time: '17:30 - 20:30',
+                description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.'
+              }
+            },
+            {
+              title: 'Castanyada',
+              date: '2025-11-01',
+              extendedProps: {
+                image: 'cartell-castanyada.jpg',
+                location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya',
+                time: '17:30 - 20:30',
+                description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.'
+              }
+            }
+          ],
+          eventClick: info => {
+            document.getElementById('eventTitle').textContent = info.event.title;
+            document.getElementById('eventDate').textContent = info.event.start.toLocaleDateString('ca-ES');
+            document.getElementById('eventLocation').textContent = info.event.extendedProps.location;
+            document.getElementById('eventTime').textContent = info.event.extendedProps.time;
+            document.getElementById('eventDescription').textContent = info.event.extendedProps.description;
+            document.getElementById('eventImage').src = info.event.extendedProps.image;
+            document.getElementById('eventModal').classList.remove('hidden');
+          },
+          eventContent: info => {
+            const div = document.createElement('div');
+            div.className = 'flex items-center';
+            div.innerHTML = `
+              <img src="${info.event.extendedProps.image}" alt="${info.event.title}" class="w-8 h-8 rounded mr-2">
+              <span>${info.event.title}</span>
+            `;
+            return { domNodes: [div] };
+          }
+        });
+        calendar.render();
+        // Suport per a esdeveniments tàctils en mòbils
+        calendarEl.addEventListener('touchstart', function(e) {
+          const target = e.target.closest('.fc-event');
+          if (target) {
+            const eventId = target.getAttribute('data-event-id');
+            const event = calendar.getEventById(eventId);
+            if (event) {
+              document.getElementById('eventTitle').textContent = event.title;
+              document.getElementById('eventDate').textContent = event.start.toLocaleDateString('ca-ES');
+              document.getElementById('eventLocation').textContent = event.extendedProps.location;
+              document.getElementById('eventTime').textContent = event.extendedProps.time;
+              document.getElementById('eventDescription').textContent = event.extendedProps.description;
+              document.getElementById('eventImage').src = event.extendedProps.image;
+              document.getElementById('eventModal').classList.remove('hidden');
+            }
+          }
+        });
+      });
+      // Modals
+      function closeModal() { document.getElementById('eventModal').classList.add('hidden'); }
+      function closeInfoModal() { document.getElementById('infoModal').classList.add('hidden'); }
+      function showInfoModal() { document.getElementById('infoModal').classList.remove('hidden'); }
+      window.onclick = e => {
+        if (e.target.classList.contains('fixed')) {
+          closeModal();
+          closeInfoModal();
+        }
+      };
+    </script>
 </body>
 </html>
