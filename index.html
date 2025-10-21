@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quintos 2006 - L'Ametlla de Mar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FullCalendar -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/ca.js"></script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+    }
+    header {
+      background-image: url('poble-ametlla.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    main {
+      background-image: url('fons-web.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: calc(100vh - 60px);
+    }
+    footer {
+      background-image: url('fons-barra-inferior.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .footer-content {
+      padding: 1.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    }
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+    }
+    #calendar {
+      background: rgba(255, 255, 255, 0.98) !important;
+      border-radius: 16px !important;
+      padding: 2rem !important;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+    }
+    .fc-event {
+      background: linear-gradient(135deg, #dc3545, #c82333) !important;
+      border: none !important;
+      border-radius: 8px !important;
+      font-weight: 600 !important;
+      color: white !important;
+      box-shadow: 0 6px 15px rgba(220, 53, 69, 0.3) !important;
+      transition: all 0.3s ease !important;
+      padding: 8px 12px !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+    .fc-event:hover {
+      transform: translateY(-3px) !important;
+      box-shadow: 0 10px 25px rgba(220, 53, 69, 0.4) !important;
+    }
+    .fc-event img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      border-radius: 4px;
+      margin-right: 8px;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      color: #0056b3;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0, 86, 179, 0.2);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #dc3545, #c82333);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 15px rgba(220, 53, 69, 0.2);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(220, 53, 69, 0.3);
+    }
+    .info-icon {
+      background: rgba(255, 255, 255, 0.98);
+      color: #007bff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .info-icon:hover {
+      background: #007bff;
+      color: white;
+      transform: scale(1.1);
+    }
+    .news-card {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .news-card.active {
+      opacity: 1;
+      position: relative;
+    }
+    .news-image {
+      width: 100%;
+      height: 240px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .news-logo {
+      width: max-w-xs md:max-w-sm;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: modalPop 0.5s ease-out;
+    }
+    .modal-image {
+      width: 100%;
+      height: 300px;
+      object-fit: contain;
+      border-radius: 10px 10px 0 0;
+    }
+    @keyframes modalPop {
+      0% { transform: scale(0.95) translateY(20px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-out;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Ajustos per a mòbils */
+    @media (max-width: 640px) {
+      header {
+        padding: 0.25rem 0;
+      }
+      header .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      header img[alt="Logo"] {
+        max-width: 80%;
+      }
+      header img[alt="Escut"] {
+        width: 4rem;
+      }
+      .info-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+      .section-title {
+        font-size: 1.875rem;
+      }
+      .news-card .news-image {
+        height: 200px;
+      }
+      .news-card .news-logo {
+        max-width: 80%;
+        height: 160px;
+      }
+      .news-card h3 {
+        font-size: 1.125rem;
+      }
+      .news-card p {
+        font-size: 0.75rem;
+      }
+      .news-card .btn-primary {
+        padding: 8px 16px;
+        font-size: 0.875rem;
+      }
+      .glass-effect {
+        padding: 1.5rem;
+      }
+      #newsCarousel {
+        min-height: 360px;
+      }
+      #calendar {
+        max-width: 100%;
+        padding: 1rem !important;
+      }
+      .fc-event {
+        font-size: 0.8rem !important;
+        padding: 6px 8px !important;
+      }
+      .fc-event img {
+        width: 24px;
+        height: 24px;
+      }
+      .modal-content {
+        max-width: 90vw;
+      }
+      .modal-image {
+        height: 240px;
+      }
+      .modal-content .p-8 {
+        padding: 1rem;
+      }
+      .modal-content h2 {
+        font-size: 1.5rem;
+      }
+      .modal-content .text-sm {
+        font-size: 0.75rem;
+      }
+      .footer-content {
+        max-width: 90%;
+        padding: 1rem;
+      }
+      .footer-content p.text-xl {
+        font-size: 1.125rem;
+      }
+      .footer-content .text-2xl {
+        font-size: 1.25rem;
+      }
+      .footer-content p.text-sm {
+        font-size: 0.75rem;
+      }
+      section.py-16 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      .glass-effect.text-center {
+        padding: 1.5rem;
+      }
+      .glass-effect.text-center p.text-lg {
+        font-size: 1rem;
+      }
+      .btn-primary.text-lg {
+        font-size: 0.875rem;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- CAPÇALERA -->
+  <header class="py-2">
+    <div class="container mx-auto px-4 flex items-center justify-between">
+      <div class="info-icon cursor-pointer" onclick="showInfoModal()">
+        <i class="fas fa-circle-info text-lg"></i>
+      </div>
+      <img src="logo-quintos-2006.png" alt="Logo" class="max-w-sm md:max-w-md mx-auto">
+      <a href="https://www.ametllamar.cat/ajuntament/inici/" target="_blank">
+        <img src="escut-ametlla.png" alt="Escut" class="w-20 md:w-24 hover:scale-105 transition-transform">
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <!-- NOVETATS -->
+    <section class="py-16">
+      <div class="container mx-auto px-6">
+        <div class="glass-effect max-w-4xl mx-auto p-6 rounded-lg relative" style="min-height: 430px;">
+          <div id="newsCarousel">
+            <div class="news-card active">
+              <img src="logo-quintos-2006.png" alt="Logo Quintos" class="news-logo">
+              <div class="flex items-center mb-2">
+                <img src="logo-quintos-2006.png" alt="Logo Quintos" class="w-10 h-10 mr-2">
+                <h3 class="text-xl font-bold text-gray-800">Instagram Oficial Actiu</h3>
+              </div>
+              <p class="text-gray-600 text-sm mb-2"><i class="fas fa-calendar-alt mr-2"></i>5 octubre 2025</p>
+              <p class="text-gray-700 text-sm mb-4">Segueix <strong>@quintos2006_</strong> per vídeos i fotos exclusives!</p>
+              <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary inline-flex items-center text-sm">
+                <i class="fab fa-instagram mr-2"></i> Segueix-nos
+              </a>
+            </div>
+            <div class="news-card">
+              <img src="cartell-castanyada.jpg" alt="Castanyada" class="news-image">
+              <h3 class="text-xl font-bold mb-2 text-gray-800">Castanyada 2025</h3>
+              <p class="text-gray-600 text-sm mb-2"><i class="fas fa-calendar-alt mr-2"></i>25 octubre 2025</p>
+              <p class="text-gray-700 text-sm mb-4">Vine a la Castanyada! Castanyes, música i diversió del 25 d'octubre a l'1 de novembre.</p>
+              <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary inline-flex items-center text-sm">
+                Més Info
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE NOSALTRES -->
+    <section class="py-16">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-12 section-title fade-in">Sobre Nosaltres</h2>
+        <div class="glass-effect max-w-4xl mx-auto p-8 rounded-lg text-center">
+          <p class="text-lg text-gray-800 leading-relaxed mb-4">
+            Som els <strong>Quintos 2006</strong> de l'Ametlla de Mar, un grup unit per la tradició i l'alegria de compartir moments únics. Organitzem esdeveniments que omplen de vida el nostre poble, unint veïns i amics en festes inoblidables. <strong>Vine i forma part de la nostra història!</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALENDARI -->
+    <section class="py-16">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-12 section-title fade-in">Calendari d'Actes</h2>
+        <div id="calendar" class="max-w-5xl mx-auto"></div>
+      </div>
+    </section>
+
+    <!-- CONTACTE -->
+    <section id="contacte" class="py-16">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-12 section-title fade-in">Contacta'ns</h2>
+        <div class="glass-effect max-w-3xl mx-auto p-8 rounded-lg text-center">
+          <p class="text-lg text-gray-800 leading-relaxed mb-6">
+            Segueix-nos a <strong>@quintos2006_</strong> per estar al dia i envia'ns un missatge per qualsevol consulta!
+          </p>
+          <a href="https://www.instagram.com/direct/t/quintos2006_" target="_blank" class="btn-primary inline-flex items-center text-lg">
+            <i class="fab fa-instagram mr-2"></i>
+            Missatge Directe
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-8">
+    <div class="footer-content container mx-auto px-6 text-center text-white">
+      <p class="text-xl font-semibold mb-4">Quintos 2006 - L'Ametlla de Mar</p>
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="https://www.instagram.com/quintos2006_" target="_blank" class="text-2xl hover:text-blue-400 transition-colors"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:marc.program3@gmail.com" class="text-2xl hover:text-blue-400 transition-colors"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p class="text-sm">© 2025 - Desenvolupat amb ❤️ per als Quintos</p>
+    </div>
+  </footer>
+
+  <!-- MODAL ESDEVENIMENTS -->
+  <div id="eventModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+    <div class="modal-content p-0 w-full max-w-lg mx-4">
+      <span class="close absolute top-4 right-4 text-2xl cursor-pointer hover:text-gray-600" onclick="closeModal()">&times;</span>
+      <img id="eventImage" class="modal-image" src="" alt="">
+      <div class="p-8">
+        <h2 id="eventTitle" class="text-2xl font-bold mb-4 text-gray-800"></h2>
+        <div class="grid grid-cols-3 gap-4 mb-6 text-sm">
+          <div class="text-center">
+            <i class="fas fa-calendar-day text-red-500 text-lg mb-2"></i>
+            <span id="eventDate" class="font-semibold"></span>
+          </div>
+          <div class="text-center">
+            <i class="fas fa-map-marker-alt text-blue-500 text-lg mb-2"></i>
+            <span id="eventLocation" class="font-semibold"></span>
+          </div>
+          <div class="text-center">
+            <i class="fas fa-clock text-purple-500 text-lg mb-2"></i>
+            <span id="eventTime" class="font-semibold"></span>
+          </div>
+        </div>
+        <p id="eventDescription" class="text-gray-700 text-sm"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL INFO -->
+  <div id="infoModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+    <div class="modal-content p-8 w-full max-w-md mx-4">
+      <span class="close absolute top-4 right-4 text-2xl cursor-pointer hover:text-gray-600" onclick="closeInfoModal()">&times;</span>
+      <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Informació</h2>
+      <div class="space-y-4 text-sm text-gray-700">
+        <p><strong>Objectiu:</strong> Informació oficial dels Quintos 2006 de l'Ametlla de Mar.</p>
+        <p><strong>Privacitat:</strong> Sense dades personals ni cookies.</p>
+        <p><strong>Contacte:</strong> marc.program3@gmail.com</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // News Carousel
+    const newsCards = document.querySelectorAll('#newsCarousel .news-card');
+    let currentNewsIndex = 0;
+
+    function showNextNews() {
+      newsCards[currentNewsIndex].classList.remove('active');
+      currentNewsIndex = (currentNewsIndex + 1) % newsCards.length;
+      newsCards[currentNewsIndex].classList.add('active');
+    }
+
+    setInterval(showNextNews, 4000);
+    newsCards[currentNewsIndex].classList.add('active');
+
+    // Calendar
+    document.addEventListener('DOMContentLoaded', function() {
+      new FullCalendar.Calendar(document.getElementById('calendar'), {
+        initialView: 'dayGridMonth',
+        initialDate: '2025-10-20',
+        locale: 'ca',
+        events: [
+          { 
+            title: 'Castanyada', 
+            date: '2025-10-25', 
+            extendedProps: { 
+              image: 'cartell-castanyada.jpg', 
+              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', 
+              time: '17:30 - 20:30', 
+              description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes, música i ambient festiu.' 
+            } 
+          },
+          { 
+            title: 'Castanyada', 
+            date: '2025-10-26', 
+            extendedProps: { 
+              image: 'cartell-castanyada.jpg', 
+              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', 
+              time: '17:30 - 20:30', 
+              description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes, música i ambient festiu.' 
+            } 
+          },
+          { 
+            title: 'Castanyada', 
+            date: '2025-10-31', 
+            extendedProps: { 
+              image: 'cartell-castanyada.jpg', 
+              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', 
+              time: '17:30 - 20:30', 
+              description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes, música i ambient festiu.' 
+            } 
+          },
+          { 
+            title: 'Castanyada', 
+            date: '2025-11-01', 
+            extendedProps: { 
+              image: 'cartell-castanyada.jpg', 
+              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', 
+              time: '17:30 - 20:30', 
+              description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes, música i ambient festiu.' 
+            } 
+          }
+        ],
+        eventClick: info => {
+          document.getElementById('eventTitle').textContent = info.event.title;
+          document.getElementById('eventDate').textContent = info.event.start.toLocaleDateString('ca-ES');
+          document.getElementById('eventLocation').textContent = info.event.extendedProps.location;
+          document.getElementById('eventTime').textContent = info.event.extendedProps.time;
+          document.getElementById('eventDescription').textContent = info.event.extendedProps.description;
+          document.getElementById('eventImage').src = info.event.extendedProps.image;
+          document.getElementById('eventModal').classList.remove('hidden');
+        },
+        eventContent: info => {
+          const div = document.createElement('div');
+          div.className = 'flex items-center';
+          div.innerHTML = `
+            <img src="${info.event.extendedProps.image}" alt="${info.event.title}" class="w-8 h-8 rounded mr-2">
+            <span>${info.event.title}</span>
+          `;
+          return { domNodes: [div] };
+        }
+      }).render();
+    });
+
+    // Modals
+    function closeModal() { document.getElementById('eventModal').classList.add('hidden'); }
+    function closeInfoModal() { document.getElementById('infoModal').classList.add('hidden'); }
+    function showInfoModal() { document.getElementById('infoModal').classList.remove('hidden'); }
+    window.onclick = e => {
+      if (e.target.classList.contains('fixed')) {
+        closeModal();
+        closeInfoModal();
+      }
+    };
+  </script>
+</body>
+</html>
