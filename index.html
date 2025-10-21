@@ -55,6 +55,7 @@
       border-radius: 16px !important;
       padding: 2rem !important;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+      touch-action: manipulation !important;
     }
     .fc-event {
       background: linear-gradient(135deg, #dc3545, #c82333) !important;
@@ -179,7 +180,6 @@
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-
     /* Ajustos per a mòbils */
     @media (max-width: 640px) {
       header {
@@ -508,6 +508,7 @@
         eventContent: info => {
           const div = document.createElement('div');
           div.className = 'flex items-center';
+          div.dataset.eventId = info.event.id; // Afegim l'ID de l'esdeveniment
           div.innerHTML = `
             <img src="${info.event.extendedProps.image}" alt="${info.event.title}" class="w-8 h-8 rounded mr-2">
             <span>${info.event.title}</span>
@@ -520,10 +521,11 @@
 
       // Suport per a esdeveniments tàctils en mòbils
       calendarEl.addEventListener('touchstart', function(e) {
-        e.preventDefault();
         const target = e.target.closest('.fc-event');
         if (target) {
-          const event = calendar.getEventById(target.closest('.fc-event').dataset.eventId || target.closest('.fc-event').querySelector('a')?.href?.match(/event-[\w-]+/)?.[0]);
+          e.preventDefault(); // Evitem el desplaçament només quan es toca un esdeveniment
+          const eventId = target.dataset.eventId;
+          const event = calendar.getEventById(eventId);
           if (event) {
             document.getElementById('eventTitle').textContent = event.title;
             document.getElementById('eventDate').textContent = event.start.toLocaleDateString('ca-ES');
