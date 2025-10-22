@@ -68,7 +68,6 @@
       padding: 8px 12px !important;
       display: flex !important;
       align-items: center !important;
-      touch-action: auto !important;
     }
     .fc-event:hover {
       transform: translateY(-3px) !important;
@@ -525,25 +524,6 @@
       });
 
       calendar.render();
-
-      // Suport per a esdeveniments tàctils en mòbils
-      calendarEl.addEventListener('touchstart', function(e) {
-        const target = e.target.closest('.fc-event');
-        if (target) {
-          e.preventDefault();
-          const eventId = target.dataset.eventId;
-          const event = calendar.getEventById(eventId);
-          if (event) {
-            document.getElementById('eventTitle').textContent = event.title;
-            document.getElementById('eventDate').textContent = event.start.toLocaleDateString('ca-ES');
-            document.getElementById('eventLocation').textContent = event.extendedProps.location;
-            document.getElementById('eventTime').textContent = event.extendedProps.time;
-            document.getElementById('eventDescription').textContent = event.extendedProps.description;
-            document.getElementById('eventImage').src = event.extendedProps.image;
-            document.getElementById('eventModal').classList.remove('hidden');
-          }
-        }
-      });
     });
 
     // Modals
