@@ -55,6 +55,7 @@
       border-radius: 16px !important;
       padding: 2rem !important;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+      touch-action: manipulation !important;
     }
     .fc-event {
       background: linear-gradient(135deg, #dc3545, #c82333) !important;
@@ -128,7 +129,7 @@
     }
     .news-card.active {
       opacity: 1;
-      position: слав relative;
+      position: relative;
     }
     .news-image {
       width: 100%;
@@ -161,6 +162,13 @@
       object-fit: contain;
       border-radius: 10px 10px 0 0;
     }
+    .escut-text {
+      color: black;
+      text-shadow: 0 2px 4px rgba(255, 255, 255, 0.7);
+      font-size: 0.875rem;
+      text-align: center;
+      margin-top: 0.25rem;
+    }
     @keyframes modalPop {
       0% { transform: scale(0.95) translateY(20px); opacity: 0; }
       100% { transform: scale(1) translateY(0); opacity: 1; }
@@ -172,7 +180,6 @@
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-
     /* Ajustos per a mòbils */
     @media (max-width: 640px) {
       header {
@@ -187,6 +194,10 @@
       }
       header img[alt="Escut"] {
         width: 4rem;
+      }
+      .escut-text {
+        font-size: 0.75rem;
+        margin-top: 0.125rem;
       }
       .info-icon {
         width: 2.5rem;
@@ -221,6 +232,7 @@
       #calendar {
         max-width: 100%;
         padding: 1rem !important;
+        touch-action: manipulation !important;
       }
       .fc-event {
         font-size: 0.8rem !important;
@@ -434,6 +446,12 @@
 
     // Calendar
     document.addEventListener('DOMContentLoaded', function() {
+      // Mostrar el modal d'informació automàticament només una vegada per sessió
+      if (!sessionStorage.getItem('infoModalShown')) {
+        showInfoModal();
+        sessionStorage.setItem('infoModalShown', 'true');
+      }
+
       const calendarEl = document.getElementById('calendar');
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
@@ -441,6 +459,7 @@
         locale: 'ca',
         events: [
           { 
+            id: 'castanyada-2025-10-25',
             title: 'Castanyada', 
             date: '2025-10-25', 
             extendedProps: { 
@@ -451,6 +470,7 @@
             } 
           },
           { 
+            id: 'castanyada-2025-10-26',
             title: 'Castanyada', 
             date: '2025-10-26', 
             extendedProps: { 
@@ -461,6 +481,7 @@
             } 
           },
           { 
+            id: 'castanyada-2025-10-31',
             title: 'Castanyada', 
             date: '2025-10-31', 
             extendedProps: { 
@@ -471,6 +492,7 @@
             } 
           },
           { 
+            id: 'castanyada-2025-11-01',
             title: 'Castanyada', 
             date: '2025-11-01', 
             extendedProps: { 
@@ -493,6 +515,7 @@
         eventContent: info => {
           const div = document.createElement('div');
           div.className = 'flex items-center';
+          div.dataset.eventId = info.event.id;
           div.innerHTML = `
             <img src="${info.event.extendedProps.image}" alt="${info.event.title}" class="w-8 h-8 rounded mr-2">
             <span>${info.event.title}</span>
@@ -507,7 +530,8 @@
       calendarEl.addEventListener('touchstart', function(e) {
         const target = e.target.closest('.fc-event');
         if (target) {
-          const eventId = target.getAttribute('data-event-id');
+          e.preventDefault();
+          const eventId = target.dataset.eventId;
           const event = calendar.getEventById(eventId);
           if (event) {
             document.getElementById('eventTitle').textContent = event.title;
