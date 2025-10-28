@@ -4,15 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quintos 2006 - L'Ametlla de Mar</title>
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
   <!-- FullCalendar -->
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/ca.js"></script>
+  
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -29,6 +35,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      background-attachment: fixed;
       min-height: calc(100vh - 60px);
     }
     footer {
@@ -138,7 +145,8 @@
       margin-bottom: 1.5rem;
     }
     .news-logo {
-      width: max-w-xs md:max-w-sm;
+      width: 100%;
+      max-width: 300px;
       height: 200px;
       object-fit: contain;
       border-radius: 10px;
@@ -179,115 +187,59 @@
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-    /* Ajustos per a mòbils */
+
+    /* COMPTE ENRERE - FONS BLANC SÒLID */
+    .countdown-box {
+      background: linear-gradient(135deg, #dc3545, #c82333);
+      color: white;
+      padding: 1rem;
+      border-radius: 16px;
+      text-align: center;
+      min-width: 80px;
+      box-shadow: 0 6px 15px rgba(220, 53, 69, 0.3);
+      font-weight: 700;
+    }
+    .countdown-label {
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      opacity: 0.9;
+    }
+    .countdown-event {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .countdown-date {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
     @media (max-width: 640px) {
-      header {
-        padding: 0.25rem 0;
-      }
-      header .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-      header img[alt="Logo"] {
-        max-width: 80%;
-      }
-      header img[alt="Escut"] {
-        width: 4rem;
-      }
-      .escut-text {
-        font-size: 0.75rem;
-        margin-top: 0.125rem;
-      }
-      .info-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-      }
-      .section-title {
-        font-size: 1.875rem;
-      }
-      .news-card .news-image {
-        height: 200px;
-      }
-      .news-card .news-logo {
-        max-width: 80%;
-        height: 160px;
-      }
-      .news-card h3 {
-        font-size: 1.125rem;
-      }
-      .news-card p {
-        font-size: 0.75rem;
-      }
-      .news-card .btn-primary {
-        padding: 8px 16px;
-        font-size: 0.875rem;
-      }
-      .glass-effect {
-        padding: 1.5rem;
-      }
-      #newsCarousel {
-        min-height: 360px;
-      }
-      #calendar {
-        max-width: 100%;
-        padding: 1rem !important;
-        touch-action: manipulation !important;
-      }
-      .fc-event {
-        font-size: 0.8rem !important;
-        padding: 6px 8px !important;
-      }
-      .fc-event img {
-        width: 24px;
-        height: 24px;
-      }
-      .modal-content {
-        max-width: 90vw;
-        width: 100%;
-        overflow-x: hidden;
-      }
-      .modal-image {
-        height: 200px;
-      }
-      .modal-content .p-8 {
-        padding: 1rem;
-      }
-      .modal-content h2 {
-        font-size: 1.5rem;
-      }
-      .modal-content .text-sm {
-        font-size: 0.75rem;
-      }
-      #eventModal {
-        z-index: 1000;
-      }
-      .footer-content {
-        max-width: 90%;
-        padding: 1rem;
-      }
-      .footer-content p.text-xl {
-        font-size: 1.125rem;
-      }
-      .footer-content .text-2xl {
-        font-size: 1.25rem;
-      }
-      .footer-content p.text-sm {
-        font-size: 0.75rem;
-      }
-      section.py-16 {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-      }
-      .glass-effect.text-center {
-        padding: 1.5rem;
-      }
-      .glass-effect.text-center p.text-lg {
-        font-size: 1rem;
-      }
-      .btn-primary.text-lg {
-        font-size: 0.875rem;
-        padding: 8px 16px;
-      }
+      header { padding: 0.25rem 0; }
+      header .container { padding-left: 1rem; padding-right: 1rem; }
+      header img[alt="Logo"] { max-width: 80%; }
+      header img[alt="Escut"] { width: 4rem; }
+      .escut-text { font-size: 0.75rem; margin-top: 0.125rem; }
+      .info-icon { width: 2.5rem; height: 2.5rem; }
+      .section-title { font-size: 1.875rem; }
+      .news-card .news-image { height: 200px; }
+      .news-card .news-logo { max-width: 80%; height: 160px; }
+      .news-card h3 { font-size: 1.125rem; }
+      .news-card p { font-size: 0.75rem; }
+      .news-card .btn-primary { padding: 8px 16px; font-size: 0.875rem; }
+      .glass-effect { padding: 1.5rem; }
+      #newsCarousel { min-height: 360px; }
+      #calendar { max-width: 100%; padding: 1rem !important; }
+      .fc-event { font-size: 0.8rem !important; padding: 6px 8px !important; }
+      .fc-event img { width: 24px; height: 24px; }
+      .modal-content { max-width: 90vw; }
+      .modal-image { height: 200px; }
+      .modal-content .p-8 { padding: 1rem; }
+      .modal-content h2 { font-size: 1.5rem; }
+      .modal-content .text-sm { font-size: 0.75rem; }
+      .footer-content { max-width: 90%; padding: 1rem; }
+      section.py-16 { padding-top: 2rem; padding-bottom: 2rem; }
     }
   </style>
 </head>
@@ -316,25 +268,58 @@
         <div class="glass-effect max-w-4xl mx-auto p-6 rounded-lg relative" style="min-height: 430px;">
           <div id="newsCarousel">
             <div class="news-card active">
-              <img src="logo-quintos-2006.png" alt="Logo Quintos" class="news-logo">
-              <div class="flex items-center mb-2">
+              <img src="logo-quintos-2006.png" alt="Logo Quintos" class="news-logo mx-auto">
+              <div class="flex items-center justify-center mb-2">
                 <img src="logo-quintos-2006.png" alt="Logo Quintos" class="w-10 h-10 mr-2">
                 <h3 class="text-xl font-bold text-gray-800">Instagram Oficial Actiu</h3>
               </div>
-              <p class="text-gray-600 text-sm mb-2"><i class="fas fa-calendar-alt mr-2"></i>21 d'octubre 2025</p>
-              <p class="text-gray-700 text-sm mb-4">Segueix <strong>@quintos2006_</strong> per vídeos i fotos exclusives!</p>
-              <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary inline-flex items-center text-sm">
-                <i class="fab fa-instagram mr-2"></i> Segueix-nos
-              </a>
+              <p class="text-gray-600 text-sm mb-2 text-center"><i class="fas fa-calendar-alt mr-2"></i>21 d'octubre 2025</p>
+              <p class="text-gray-700 text-sm mb-4 text-center">Segueix <strong>@quintos2006_</strong> per vídeos i fotos exclusives!</p>
+              <div class="text-center">
+                <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary inline-flex items-center text-sm">
+                  <i class="fab fa-instagram mr-2"></i> Segueix-nos
+                </a>
+              </div>
             </div>
             <div class="news-card">
-              <img src="cartell-castanyada.jpg" alt="Castanyada" class="news-image">
-              <h3 class="text-xl font-bold mb-2 text-gray-800">Castanyada 2025</h3>
-              <p class="text-gray-600 text-sm mb-2"><i class="fas fa-calendar-alt mr-2"></i>25, 26 i 31 d'octubre i 1 de novembre 2025</p>
-              <p class="text-gray-700 text-sm mb-4">Vine a la Castanyada! Castanyes, panellets i diversió del 25 d'octubre a l'1 de novembre.</p>
-              <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary inline-flex items-center text-sm">
-                Més Info
-              </a>
+              <img src="cartell-castanyada.jpg" alt="Castanyada" class="news-image mx-auto">
+              <h3 class="text-xl font-bold mb-2 text-gray-800 text-center">Castanyada 2025</h3>
+              <p class="text-gray-600 text-sm mb-2 text-center"><i class="fas fa-calendar-alt mr-2"></i>25, 26 i 31 d'octubre i 1 de novembre 2025</p>
+              <p class="text-gray-700 text-sm mb-4 text-center">Vine a la Castanyada! Castanyes, panellets i diversió del 25 d'octubre a l'1 de novembre.</p>
+              <div class="text-center">
+                <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary inline-flex items-center text-sm">
+                  Més Info
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPTE ENRERE (FONS BLANC SÒLID) -->
+    <section class="py-16">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-8 section-title">Compte enrere</h2>
+        <div class="glass-effect max-w-4xl mx-auto p-8 rounded-lg text-center bg-white">
+          <p id="event-name" class="countdown-event">Carregant...</p>
+          <p id="event-date" class="countdown-date mb-6"></p>
+          <div class="grid grid-cols-4 gap-4 max-w-md mx-auto">
+            <div class="countdown-box">
+              <div id="days" class="text-3xl">0</div>
+              <div class="countdown-label">dies</div>
+            </div>
+            <div class="countdown-box">
+              <div id="hours" class="text-3xl">0</div>
+              <div class="countdown-label">hores</div>
+            </div>
+            <div class="countdown-box">
+              <div id="minutes" class="text-3xl">0</div>
+              <div class="countdown-label">minuts</div>
+            </div>
+            <div class="countdown-box">
+              <div id="seconds" class="text-3xl">0</div>
+              <div class="countdown-label">segons</div>
             </div>
           </div>
         </div>
@@ -390,7 +375,7 @@
     </div>
   </footer>
 
-  <!-- MODAL ESDEVENIMENTS -->
+  <!-- MODALS -->
   <div id="eventModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
     <div class="modal-content p-0 w-full max-w-lg mx-4">
       <span class="close absolute top-4 right-4 text-2xl cursor-pointer hover:text-gray-600" onclick="closeModal()">&times;</span>
@@ -416,7 +401,6 @@
     </div>
   </div>
 
-  <!-- MODAL INFO -->
   <div id="infoModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
     <div class="modal-content p-8 w-full max-w-md mx-4">
       <span class="close absolute top-4 right-4 text-2xl cursor-pointer hover:text-gray-600" onclick="closeInfoModal()">&times;</span>
@@ -430,112 +414,106 @@
   </div>
 
   <script>
-    // News Carousel
-    const newsCards = document.querySelectorAll('#newsCarousel .news-card');
-    let currentNewsIndex = 0;
+    // ESDEVENIMENTS
+    const events = [
+      { title: 'Castanyada', date: '2025-10-25T17:30:00', location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', time: '17:30 - 20:30', image: 'cartell-castanyada.jpg', description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' },
+      { title: 'Castanyada', date: '2025-10-26T17:30:00', location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', time: '17:30 - 20:30', image: 'cartell-castanyada.jpg', description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' },
+      { title: 'Castanyada', date: '2025-10-31T17:30:00', location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', time: '17:30 - 20:30', image: 'cartell-castanyada.jpg', description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' },
+      { title: 'Castanyada', date: '2025-11-01T17:30:00', location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', time: '17:30 - 20:30', image: 'cartell-castanyada.jpg', description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' },
+      { title: 'Presentació Hereus, Pubilles i Quintos', date: '2025-11-15T18:00:00', location: 'Poliesportiu Municipal', time: '18:00', image: 'cartell-presentacio.jpg', description: 'Presentació oficial dels Hereus, Pubilles i Quintos 2006. Vine a conèixer-los!' }
+    ];
 
-    function showNextNews() {
-      newsCards[currentNewsIndex].classList.remove('active');
-      currentNewsIndex = (currentNewsIndex + 1) % newsCards.length;
-      newsCards[currentNewsIndex].classList.add('active');
+    // COMPTE ENRERE
+    function getNextEvent() {
+      const now = new Date();
+      let next = null;
+      let minDiff = Infinity;
+      events.forEach(e => {
+        const d = new Date(e.date);
+        if (d > now && (d - now) < minDiff) {
+          minDiff = d - now;
+          next = e;
+        }
+      });
+      return next || events[0];
     }
 
-    setInterval(showNextNews, 4000);
-    newsCards[currentNewsIndex].classList.add('active');
+    function updateCountdown() {
+      const e = getNextEvent();
+      const target = new Date(e.date).getTime();
+      const now = new Date().getTime();
+      const diff = target - now;
+      if (diff <= 0) { updateCountdown(); return; }
 
-    // Calendar
-    document.addEventListener('DOMContentLoaded', function() {
-      // Mostrar el modal d'informació automàticament només una vegada per sessió
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+
+      document.getElementById('event-name').textContent = e.title;
+      document.getElementById('event-date').textContent = 
+        `${new Date(e.date).toLocaleDateString('ca-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} – ${new Date(e.date).toLocaleTimeString('ca-ES', { hour: '2-digit', minute: '2-digit' })}`;
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // CARRUSEL
+    const newsCards = document.querySelectorAll('#newsCarousel .news-card');
+    let i = 0;
+    function nextNews() {
+      newsCards[i].classList.remove('active');
+      i = (i + 1) % newsCards.length;
+      newsCards[i].classList.add('active');
+    }
+    setInterval(nextNews, 4000);
+    newsCards[0].classList.add('active');
+
+    // CALENDARI
+    document.addEventListener('DOMContentLoaded', () => {
       if (!sessionStorage.getItem('infoModalShown')) {
         showInfoModal();
         sessionStorage.setItem('infoModalShown', 'true');
       }
 
-      const calendarEl = document.getElementById('calendar');
-      const calendar = new FullCalendar.Calendar(calendarEl, {
+      const cal = new FullCalendar.Calendar(document.getElementById('calendar'), {
         initialView: 'dayGridMonth',
         initialDate: '2025-10-20',
         locale: 'ca',
-        events: [
-          { 
-            id: 'castanyada-2025-10-25',
-            title: 'Castanyada', 
-            date: '2025-10-25', 
-            extendedProps: { 
-              image: 'cartell-castanyada.jpg', 
-              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', 
-              time: '17:30 - 20:30', 
-              description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' 
-            } 
-          },
-          { 
-            id: 'castanyada-2025-10-26',
-            title: 'Castanyada', 
-            date: '2025-10-26', 
-            extendedProps: { 
-              image: 'cartell-castanyada.jpg', 
-              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', 
-              time: '17:30 - 20:30', 
-              description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' 
-            } 
-          },
-          { 
-            id: 'castanyada-2025-10-31',
-            title: 'Castanyada', 
-            date: '2025-10-31', 
-            extendedProps: { 
-              image: 'cartell-castanyada.jpg', 
-              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', 
-              time: '17:30 - 20:30', 
-              description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' 
-            } 
-          },
-          { 
-            id: 'castanyada-2025-11-01',
-            title: 'Castanyada', 
-            date: '2025-11-01', 
-            extendedProps: { 
-              image: 'cartell-castanyada.jpg', 
-              location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', 
-              time: '17:30 - 20:30', 
-              description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' 
-            } 
-          }
-        ],
+        events: events.map(e => ({
+          id: e.title + e.date,
+          title: e.title,
+          date: e.date.split('T')[0],
+          extendedProps: { image: e.image, location: e.location, time: e.time, description: e.description }
+        })),
         eventClick: info => {
+          const p = info.event.extendedProps;
           document.getElementById('eventTitle').textContent = info.event.title;
           document.getElementById('eventDate').textContent = info.event.start.toLocaleDateString('ca-ES');
-          document.getElementById('eventLocation').textContent = info.event.extendedProps.location;
-          document.getElementById('eventTime').textContent = info.event.extendedProps.time;
-          document.getElementById('eventDescription').textContent = info.event.extendedProps.description;
-          document.getElementById('eventImage').src = info.event.extendedProps.image;
+          document.getElementById('eventLocation').textContent = p.location;
+          document.getElementById('eventTime').textContent = p.time;
+          document.getElementById('eventDescription').textContent = p.description;
+          document.getElementById('eventImage').src = p.image;
           document.getElementById('eventModal').classList.remove('hidden');
         },
         eventContent: info => {
           const div = document.createElement('div');
           div.className = 'flex items-center';
-          div.dataset.eventId = info.event.id;
-          div.innerHTML = `
-            <img src="${info.event.extendedProps.image}" alt="${info.event.title}" class="w-8 h-8 rounded mr-2">
-            <span>${info.event.title}</span>
-          `;
+          div.innerHTML = `<img src="${info.event.extendedProps.image}" class="w-8 h-8 rounded mr-2"><span>${info.event.title}</span>`;
           return { domNodes: [div] };
         }
       });
-
-      calendar.render();
+      cal.render();
     });
 
-    // Modals
+    // MODALS
     function closeModal() { document.getElementById('eventModal').classList.add('hidden'); }
     function closeInfoModal() { document.getElementById('infoModal').classList.add('hidden'); }
     function showInfoModal() { document.getElementById('infoModal').classList.remove('hidden'); }
-    window.onclick = e => {
-      if (e.target.classList.contains('fixed')) {
-        closeModal();
-        closeInfoModal();
-      }
-    };
+    window.onclick = e => { if (e.target.classList.contains('fixed')) { closeModal(); closeInfoModal(); }};
   </script>
 </body>
 </html>
