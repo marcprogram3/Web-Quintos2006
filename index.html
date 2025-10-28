@@ -13,6 +13,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- OneSignal SDK (v16) -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "117060ed-1417-4cc4-adb8-166f3b6fa135",
+        notifyButton: {
+          enable: false,
+        },
+        promptOptions: {
+          slidedown: {
+            enabled: true,
+            autoPrompt: true,
+            timeDelay: 20,
+            pageViews: 1,
+          }
+        }
+      });
+    });
+  </script>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -425,6 +446,7 @@
         <p><strong>Objectiu:</strong> Informació oficial dels Quintos 2006 de l'Ametlla de Mar.</p>
         <p><strong>Privacitat:</strong> No es recolleixen dades personals ni cookies.</p>
         <p><strong>Contacte:</strong> marc.program3@gmail.com</p>
+        <p><strong>Notificacions:</strong> Activa-les per rebre recordatoris de la Castanyada!</p>
       </div>
     </div>
   </div>
