@@ -4,331 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quintos 2006 - L'Ametlla de Mar</title>
-  
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- FullCalendar -->
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/ca.js"></script>
-  
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f8f9fa;
-      margin: 0;
-    }
-    header {
-      background-image: url('poble-ametlla.jpg');
-      background-size: cover;
-      background-position: center;
-    }
-    main {
-      background-image: url('fons-web.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      min-height: calc(100vh - 60px);
-    }
-    footer {
-      background-image: url('fons-barra-inferior.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    .footer-content {
-      padding: 1.5rem;
-      max-width: 600px;
-      margin: 0 auto;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-    }
-    .glass-effect {
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      border-radius: 16px;
-    }
-    #calendar {
-      background: rgba(255, 255, 255, 0.98) !important;
-      border-radius: 16px !important;
-      padding: 2rem !important;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
-      touch-action: manipulation !important;
-    }
-    .fc-event {
-      background: linear-gradient(135deg, #dc3545, #c82333) !important;
-      border: none !important;
-      border-radius: 8px !important;
-      font-weight: 600 !important;
-      color: white !important;
-      box-shadow: 0 6px 15px rgba(220, 53, 69, 0.3) !important;
-      transition: all 0.3s ease !important;
-      padding: 8px 12px !important;
-      display: flex !important;
-      align-items: center !important;
-    }
-    .fc-event:hover {
-      transform: translateY(-3px) !important;
-      box-shadow: 0 10px 25px rgba(220, 53, 69, 0.4) !important;
-    }
-    .fc-event img {
-      width: 32px;
-      height: 32px;
-      object-fit: contain;
-      border-radius: 4px;
-      margin-right: 8px;
-    }
-    .section-title {
-      font-family: 'Montserrat', sans-serif;
-      color: #0056b3;
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-shadow: 0 2px 8px rgba(0, 86, 179, 0.2);
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #dc3545, #c82333);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 6px 15px rgba(220, 53, 69, 0.2);
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(220, 53, 69, 0.3);
-    }
-    .info-icon {
-      background: rgba(255, 255, 255, 0.98);
-      color: #007bff;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    .info-icon:hover {
-      background: #007bff;
-      color: white;
-      transform: scale(1.1);
-    }
-    .news-card {
-      opacity: 0;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      transition: opacity 0.5s ease-in-out;
-    }
-    .news-card.active {
-      opacity: 1;
-      position: relative;
-    }
-    .news-image {
-      width: 100%;
-      height: 240px;
-      object-fit: contain;
-      border-radius: 10px;
-      margin-bottom: 1.5rem;
-    }
-    .news-logo {
-      width: 100%;
-      max-width: 300px;
-      height: 200px;
-      object-fit: contain;
-      border-radius: 10px;
-      margin-bottom: 1.5rem;
-    }
-    .modal-content {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      max-width: 600px;
-      max-height: 90vh;
-      overflow-y: auto;
-      overflow-x: hidden;
-      width: 100%;
-      animation: modalPop 0.5s ease-out;
-    }
-    .modal-image {
-      width: 100%;
-      height: 300px;
-      object-fit: contain;
-      border-radius: 10px 10px 0 0;
-    }
-    .escut-text {
-      color: black;
-      text-shadow: 0 2px 4px rgba(255, 255, 255, 0.7);
-      font-size: 0.875rem;
-      text-align: center;
-      margin-top: 0.25rem;
-    }
-    @keyframes modalPop {
-      0% { transform: scale(0.95) translateY(20px); opacity: 0; }
-      100% { transform: scale(1) translateY(0); opacity: 1; }
-    }
-    .fade-in {
-      animation: fadeIn 1s ease-out;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* COMPTE ENRERE - FONS BLANC SÒLID */
-    .countdown-box {
-      background: linear-gradient(135deg, #dc3545, #c82333);
-      color: white;
-      padding: 1rem;
-      border-radius: 16px;
-      text-align: center;
-      min-width: 80px;
-      box-shadow: 0 6px 15px rgba(220, 53, 69, 0.3);
-      font-weight: 700;
-    }
-    .countdown-label {
-      font-size: 0.875rem;
-      margin-top: 0.25rem;
-      opacity: 0.9;
-    }
-    .countdown-event {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-    .countdown-date {
-      font-size: 1rem;
-      opacity: 0.9;
-    }
-
-    /* MÒBILS: FONS CORREGIT */
-    @media (max-width: 640px) {
-      header { padding: 0.25rem 0; }
-      header .container { padding-left: 1rem; padding-right: 1rem; }
-      header img[alt="Logo"] { max-width: 80%; }
-      header img[alt="Escut"] { width: 4rem; }
-      .escut-text { font-size: 0.75rem; margin-top: 0.125rem; }
-      .info-icon { width: 2.5rem; height: 2.5rem; }
-      .section-title { font-size: 1.875rem; }
-      .news-card .news-image { height: 200px; }
-      .news-card .news-logo { max-width: 80%; height: 160px; }
-      .news-card h3 { font-size: 1.125rem; }
-      .news-card p { font-size: 0.75rem; }
-      .news-card .btn-primary { padding: 8px 16px; font-size: 0.875rem; }
-      .glass-effect { padding: 1.5rem; }
-      #newsCarousel { min-height: 360px; }
-      #calendar { max-width: 100%; padding: 1rem !important; }
-      .fc-event { font-size: 0.8rem !important; padding: 6px 8px !important; }
-      .fc-event img { width: 24px; height: 24px; }
-      .modal-content { max-width: 90vw; }
-      .modal-image { height: 200px; }
-      .modal-content .p-8 { padding: 1rem; }
-      .modal-content h2 { font-size: 1.5rem; }
-      .modal-content .text-sm { font-size: 0.75rem; }
-      .footer-content { max-width: 90%; padding: 1rem; }
-      section.py-16 { padding-top: 2rem; padding-bottom: 2rem; }
-
-      /* FONS EN MÒBILS: NO AMPLIAT */
-      main {
-        background-attachment: scroll !important;
-        background-size: cover !important;
-        background-position: center top !important;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <!-- CAPÇALERA -->
+<body class="min-h-screen">
+
+  <!-- HEADER -->
   <header class="py-2">
     <div class="container mx-auto px-4 flex items-center justify-between">
-      <div class="info-icon cursor-pointer" onclick="showInfoModal()">
+      <div class="info-icon cursor-pointer" onclick="document.getElementById('infoModal').classList.remove('hidden')">
         <i class="fas fa-circle-info text-lg"></i>
       </div>
-      <img src="logo-quintos-2006.png" alt="Logo" class="max-w-sm md:max-w-md mx-auto">
+      <img src="img/logo-quintos-2006.png" alt="Logo" class="max-w-sm md:max-w-md mx-auto">
       <div class="flex flex-col items-center">
         <a href="https://www.ametllamar.cat/ajuntament/inici/" target="_blank">
-          <img src="escut-ametlla.png" alt="Escut" class="w-20 md:w-24 hover:scale-105 transition-transform">
+          <img src="img/escut-ametlla.png" alt="Escut" class="w-20 md:w-24 hover:scale-105 transition-transform">
         </a>
         <p class="escut-text">Ajuntament de l'Ametlla de Mar</p>
       </div>
     </div>
   </header>
 
-  <!-- MAIN -->
-  <main>
-    <!-- NOVETATS -->
+  <main class="bg-cover bg-center bg-fixed" style="background-image: url('img/fons-web.jpg')">
+
+    <!-- NOVETATS - FIRA DE NADAL -->
     <section class="py-16">
       <div class="container mx-auto px-6">
-        <div class="glass-effect max-w-4xl mx-auto p-6 rounded-lg relative" style="min-height: 430px;">
-          <div id="newsCarousel">
-            <div class="news-card active">
-              <img src="logo-quintos-2006.png" alt="Logo Quintos" class="news-logo mx-auto">
-              <div class="flex items-center justify-center mb-2">
-                <img src="logo-quintos-2006.png" alt="Logo Quintos" class="w-10 h-10 mr-2">
-                <h3 class="text-xl font-bold text-gray-800">Instagram Oficial Actiu</h3>
-              </div>
-              <p class="text-gray-600 text-sm mb-2 text-center"><i class="fas fa-calendar-alt mr-2"></i>21 d'octubre 2025</p>
-              <p class="text-gray-700 text-sm mb-4 text-center">Segueix <strong>@quintos2006_</strong> per vídeos i fotos exclusives!</p>
-              <div class="text-center">
-                <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary inline-flex items-center text-sm">
-                  <i class="fab fa-instagram mr-2"></i> Segueix-nos
-                </a>
-              </div>
-            </div>
-            <div class="news-card">
-              <img src="cartell-castanyada.jpg" alt="Castanyada" class="news-image mx-auto">
-              <h3 class="text-xl font-bold mb-2 text-gray-800 text-center">Castanyada 2025</h3>
-              <p class="text-gray-600 text-sm mb-2 text-center"><i class="fas fa-calendar-alt mr-2"></i>25, 26 i 31 d'octubre i 1 de novembre 2025</p>
-              <p class="text-gray-700 text-sm mb-4 text-center">Vine a la Castanyada! Castanyes, panellets i diversió del 25 d'octubre a l'1 de novembre.</p>
-              <div class="text-center">
-                <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary inline-flex items-center text-sm">
-                  Més Info
-                </a>
-              </div>
-            </div>
+        <div class="glass-effect max-w-4xl mx-auto p-6 rounded-lg">
+          <div class="text-center">
+            <img src="img/cartell-firanadal.jpg" alt="Fira de Nadal 2025" class="w-full max-w-md mx-auto rounded-lg shadow-lg">
+            <h3 class="text-3xl font-bold text-gray-800 mt-6 mb-2">Fira de Nadal 2025</h3>
+            <p class="text-gray-600 text-lg mb-2"><i class="fas fa-calendar-alt mr-2"></i>6, 7 i 8 de desembre</p>
+            <p class="text-gray-600 text-lg mb-2"><i class="fas fa-clock mr-2"></i>11:00–14:00 h i 17:00–20:00 h</p>
+            <p class="text-gray-600 text-lg mb-6"><i class="fas fa-map-marker-alt mr-2"></i>Parc Bon Repòs</p>
+            <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary text-lg">
+              <i class="fab fa-instagram mr-2"></i> Més informació
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- COMPTE ENRERE (FONS BLANC SÒLID) -->
+    <!-- COMPTE ENRERE -->
     <section class="py-16">
       <div class="container mx-auto px-6">
         <h2 class="text-4xl font-bold text-center mb-8 section-title">Compte enrere</h2>
         <div class="glass-effect max-w-4xl mx-auto p-8 rounded-lg text-center bg-white">
-          <p id="event-name" class="countdown-event">Carregant...</p>
-          <p id="event-date" class="countdown-date mb-6"></p>
+          <p class="text-2xl font-bold text-gray-800 mb-2">Fira de Nadal</p>
+          <p class="text-lg text-gray-600 mb-6">6, 7 i 8 de desembre · Parc Bon Repòs</p>
           <div class="grid grid-cols-4 gap-4 max-w-md mx-auto">
-            <div class="countdown-box">
-              <div id="days" class="text-3xl">0</div>
-              <div class="countdown-label">dies</div>
-            </div>
-            <div class="countdown-box">
-              <div id="hours" class="text-3xl">0</div>
-              <div class="countdown-label">hores</div>
-            </div>
-            <div class="countdown-box">
-              <div id="minutes" class="text-3xl">0</div>
-              <div class="countdown-label">minuts</div>
-            </div>
-            <div class="countdown-box">
-              <div id="seconds" class="text-3xl">0</div>
-              <div class="countdown-label">segons</div>
-            </div>
+            <div class="countdown-box"><div id="days" class="text-4xl">0</div><div class="countdown-label">dies</div></div>
+            <div class="countdown-box"><div id="hours" class="text-4xl">0</div><div class="countdown-label">hores</div></div>
+            <div class="countdown-box"><div id="minutes" class="text-4xl">0</div><div class="countdown-label">minuts</div></div>
+            <div class="countdown-box"><div id="seconds" class="text-4xl">0</div><div class="countdown-label">segons</div></div>
           </div>
         </div>
       </div>
@@ -337,10 +70,10 @@
     <!-- SOBRE NOSALTRES -->
     <section class="py-16">
       <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-12 section-title fade-in">Sobre Nosaltres</h2>
+        <h2 class="text-4xl font-bold text-center mb-12 section-title">Sobre Nosaltres</h2>
         <div class="glass-effect max-w-4xl mx-auto p-8 rounded-lg text-center">
-          <p class="text-lg text-gray-800 leading-relaxed mb-4">
-            Som els <strong>Quintos 2006</strong> de l'Ametlla de Mar, un grup unit per la tradició i l'alegria de compartir moments únics. Organitzem esdeveniments que omplen de vida el nostre poble, unint veïns i amics en festes inoblidables. <strong>Vine i forma part de la nostra història!</strong>
+          <p class="text-lg text-gray-800 leading-relaxed">
+            Som els <strong>Quintos 2006</strong> de l'Ametlla de Mar, un grup unit per la tradició i l'alegria de compartir moments únics. Organitzem esdeveniments que omplen de vida el nostre poble. <strong>Vine i forma part de la nostra història!</strong>
           </p>
         </div>
       </div>
@@ -349,35 +82,34 @@
     <!-- CALENDARI -->
     <section class="py-16">
       <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-12 section-title fade-in">Calendari d'Actes</h2>
-        <div id="calendar" class="max-w-5xl mx-auto"></div>
+        <h2 class="text-4xl font-bold text-center mb-12 section-title">Calendari d'Actes</h2>
+        <div class="glass-effect max-w-5xl mx-auto p-6 rounded-lg bg-white">
+          <div id="calendar"></div>
+        </div>
       </div>
     </section>
 
     <!-- CONTACTE -->
-    <section id="contacte" class="py-16">
+    <section class="py-16">
       <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-12 section-title fade-in">Contacta'ns</h2>
+        <h2 class="text-4xl font-bold text-center mb-12 section-title">Contacta'ns</h2>
         <div class="glass-effect max-w-3xl mx-auto p-8 rounded-lg text-center">
-          <p class="text-lg text-gray-800 leading-relaxed mb-6">
-            Segueix-nos a <strong>@quintos2006_</strong> per estar al dia i envia'ns un missatge per qualsevol consulta!
-          </p>
-          <a href="https://www.instagram.com/direct/t/quintos2006_" target="_blank" class="btn-primary inline-flex items-center text-lg">
-            <i class="fab fa-instagram mr-2"></i>
-            Missatge Directe
+          <p class="text-lg text-gray-800 mb-6">Segueix-nos a <strong>@quintos2006_</strong> per estar al dia!</p>
+          <a href="https://www.instagram.com/direct/t/quintos2006_" target="_blank" class="btn-primary text-lg">
+            <i class="fab fa-instagram mr-2"></i> Missatge Directe
           </a>
         </div>
       </div>
     </section>
   </main>
 
- <!-- FOOTER -->
+  <!-- FOOTER -->
   <footer class="py-8">
     <div class="footer-content container mx-auto px-6 text-center text-white">
       <p class="text-xl font-semibold mb-4">Quintos 2006 - L'Ametlla de Mar</p>
       <div class="flex justify-center space-x-6 mb-4">
-        <a href="https://www.instagram.com/quintos2006_" target="_blank" class="text-2xl hover:text-blue-400 transition-colors"><i class="fab fa-instagram"></i></a>
-        <a href="mailto:marc.program3@gmail.com" class="text-2xl hover:text-blue-400 transition-colors"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.instagram.com/quintos2006_" target="_blank" class="text-3xl hover:text-pink-400"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:marc.program3@gmail.com" class="text-3xl hover:text-blue-400"><i class="fas fa-envelope"></i></a>
       </div>
       <p class="text-sm">© 2025 - Desenvolupat amb <i class="fas fa-heart text-red-500"></i> per marc.program3@gmail.com</p>
     </div>
@@ -386,142 +118,106 @@
   <!-- MODALS -->
   <div id="eventModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
     <div class="modal-content p-0 w-full max-w-lg mx-4">
-      <span class="close absolute top-4 right-4 text-2xl cursor-pointer hover:text-gray-600" onclick="closeModal()">&times;</span>
-      <img id="eventImage" class="modal-image" src="" alt="">
-      <div class="p-8">
-        <h2 id="eventTitle" class="text-2xl font-bold mb-4 text-gray-800"></h2>
-        <div class="grid grid-cols-3 gap-4 mb-6 text-sm">
-          <div class="text-center">
-            <i class="fas fa-calendar-day text-red-500 text-lg mb-2"></i>
-            <span id="eventDate" class="font-semibold"></span>
-          </div>
-          <div class="text-center">
-            <i class="fas fa-map-marker-alt text-blue-500 text-lg mb-2"></i>
-            <span id="eventLocation" class="font-semibold"></span>
-          </div>
-          <div class="text-center">
-            <i class="fas fa-clock text-purple-500 text-lg mb-2"></i>
-            <span id="eventTime" class="font-semibold"></span>
-          </div>
-        </div>
-        <p id="eventDescription" class="text-gray-700 text-sm"></p>
+      <span class="close absolute top-4 right-4 text-3xl cursor-pointer text-white hover:text-gray-300 z-10" onclick="this.parentElement.parentElement.classList.add('hidden')">&times;</span>
+      <img id="eventImage" class="modal-image w-full" src="" alt="">
+      <div class="p-8 bg-white">
+        <h2 id="eventTitle" class="text-2xl font-bold mb-4"></h2>
+        <p class="text-lg mb-2"><i class="fas fa-calendar-day text-red-500 mr-2"></i><span id="eventDate"></span></p>
+        <p class="text-lg mb-2"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i><span id="eventLocation"></span></p>
+        <p class="text-lg mb-4"><i class="fas fa-clock text-purple-500 mr-2"></i><span id="eventTime"></span></p>
+        <p id="eventDescription" class="text-gray-700"></p>
       </div>
     </div>
   </div>
 
   <div id="infoModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
-    <div class="modal-content p-8 w-full max-w-md mx-4">
-      <span class="close absolute top-4 right-4 text-2xl cursor-pointer hover:text-gray-600" onclick="closeInfoModal()">&times;</span>
-      <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Informació</h2>
-      <div class="space-y-4 text-sm text-gray-700">
-        <p><strong>Objectiu:</strong> Informació oficial dels Quintos 2006 de l'Ametlla de Mar.</p>
-        <p><strong>Privacitat:</strong> No es recolleixen dades personals ni cookies.</p>
+    <div class="modal-content p-8 w-full max-w-md mx-4 bg-white rounded-lg">
+      <span class="close absolute top-4 right-4 text-2xl cursor-pointer" onclick="this.parentElement.parentElement.classList.add('hidden')">&times;</span>
+      <h2 class="text-2xl font-bold mb-6 text-center">Informació</h2>
+      <div class="space-y-3 text-gray-700">
+        <p><strong>Objectiu:</strong> Web oficial dels Quintos 2006</p>
+        <p><strong>Privacitat:</strong> No es recull cap dada personal</p>
         <p><strong>Contacte:</strong> marc.program3@gmail.com</p>
       </div>
     </div>
   </div>
 
+  <!-- JAVASCRIPT FINAL -->
   <script>
-    // ESDEVENIMENTS
     const events = [
-      { title: 'Castanyada', date: '2025-10-25T17:30:00', location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', time: '17:30 - 20:30', image: 'cartell-castanyada.jpg', description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' },
-      { title: 'Castanyada', date: '2025-10-26T17:30:00', location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', time: '17:30 - 20:30', image: 'cartell-castanyada.jpg', description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' },
-      { title: 'Castanyada', date: '2025-10-31T17:30:00', location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', time: '17:30 - 20:30', image: 'cartell-castanyada.jpg', description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' },
-      { title: 'Castanyada', date: '2025-11-01T17:30:00', location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', time: '17:30 - 20:30', image: 'cartell-castanyada.jpg', description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' },
-      { title: 'Presentació Hereus, Pubilles i Quintos', date: '2025-11-15T18:00:00', location: 'Poliesportiu Municipal', time: '18:00', image: 'cartell-presentacio.jpg', description: 'Presentació oficial dels Hereus, Pubilles i Quintos 2006. Vine a conèixer-los!' }
+      { title: 'Castanyada', start: '2025-10-25', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
+      { title: 'Castanyada', start: '2025-10-26', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
+      { title: 'Castanyada', start: '2025-10-31', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
+      { title: 'Castanyada', start: '2025-11-01', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
+      { title: 'Presentació Hereus, Pubilles i Quintos', start: '2025-11-15', image: 'img/cartell-presentacio.jpg', location: 'Poliesportiu Municipal', time: '18:00', description: 'Presentació oficial' },
+      { title: 'Fira de Nadal', start: '2025-12-06', image: 'img/cartell-firanadal.jpg', location: 'Parc Bon Repòs', time: '11:00–14:00 i 17:00–20:00 h', description: 'Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d\'una cistella i ambient nadalenc!' },
+      { title: 'Fira de Nadal', start: '2025-12-07', image: 'img/cartell-firanadal.jpg', location: 'Parc Bon Repòs', time: '11:00–14:00 i 17:00–20:00 h', description: 'Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d\'una cistella i ambient nadalenc!' },
+      { title: 'Fira de Nadal', start: '2025-12-08', image: 'img/cartell-firanadal.jpg', location: 'Parc Bon Repòs', time: '11:00–14:00 i 17:00–20:00 h', description: 'Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d\'una cistella i ambient nadalenc!' }
     ];
 
-    // COMPTE ENRERE
-    function getNextEvent() {
-      const now = new Date();
-      let next = null;
-      let minDiff = Infinity;
-      events.forEach(e => {
-        const d = new Date(e.date);
-        if (d > now && (d - now) < minDiff) {
-          minDiff = d - now;
-          next = e;
-        }
-      });
-      return next || events[0];
-    }
-
-    function updateCountdown() {
-      const e = getNextEvent();
-      const target = new Date(e.date).getTime();
-      const now = new Date().getTime();
-      const diff = target - now;
-      if (diff <= 0) { updateCountdown(); return; }
-
-      const days = Math.floor(diff / 86400000);
-      const hours = Math.floor((diff % 86400000) / 3600000);
-      const minutes = Math.floor((diff % 3600000) / 60000);
-      const seconds = Math.floor((diff % 60000) / 1000);
-
-      document.getElementById('event-name').textContent = e.title;
-      document.getElementById('event-date').textContent = 
-        `${new Date(e.date).toLocaleDateString('ca-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} – ${new Date(e.date).toLocaleTimeString('ca-ES', { hour: '2-digit', minute: '2-digit' })}`;
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = hours;
-      document.getElementById('minutes').textContent = minutes;
-      document.getElementById('seconds').textContent = seconds;
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // CARRUSEL
-    const newsCards = document.querySelectorAll('#newsCarousel .news-card');
-    let i = 0;
-    function nextNews() {
-      newsCards[i].classList.remove('active');
-      i = (i + 1) % newsCards.length;
-      newsCards[i].classList.add('active');
-    }
-    setInterval(nextNews, 4000);
-    newsCards[0].classList.add('active');
-
-    // CALENDARI
     document.addEventListener('DOMContentLoaded', () => {
-      if (!sessionStorage.getItem('infoModalShown')) {
-        showInfoModal();
-        sessionStorage.setItem('infoModalShown', 'true');
+      // Compte enrere
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const nextEvent = events.find(e => new Date(e.start) > now);
+        if (!nextEvent) {
+          document.getElementById('event-name').textContent = 'Tots els esdeveniments han passat!';
+          document.getElementById('event-date').textContent = '';
+          ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '0');
+          return;
+        }
+        const diff = new Date(nextEvent.start) - now;
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
       }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
 
-      const cal = new FullCalendar.Calendar(document.getElementById('calendar'), {
+      // Calendari
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        initialDate: '2025-10-20',
+        initialDate: '2025-12-01',
         locale: 'ca',
-        events: events.map(e => ({
-          id: e.title + e.date,
-          title: e.title,
-          date: e.date.split('T')[0],
-          extendedProps: { image: e.image, location: e.location, time: e.time, description: e.description }
-        })),
-        eventClick: info => {
-          const p = info.event.extendedProps;
+        headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth' },
+        events: events,
+        eventClick: function(info) {
           document.getElementById('eventTitle').textContent = info.event.title;
-          document.getElementById('eventDate').textContent = info.event.start.toLocaleDateString('ca-ES');
-          document.getElementById('eventLocation').textContent = p.location;
-          document.getElementById('eventTime').textContent = p.time;
-          document.getElementById('eventDescription').textContent = p.description;
-          document.getElementById('eventImage').src = p.image;
+          document.getElementById('eventDate').textContent = info.event.start.toLocaleDateString('ca-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+          document.getElementById('eventLocation').textContent = info.event.extendedProps.location || '';
+          document.getElementById('eventTime').textContent = info.event.extendedProps.time || '';
+          document.getElementById('eventDescription').textContent = info.event.extendedProps.description || '';
+          document.getElementById('eventImage').src = info.event.extendedProps.image;
           document.getElementById('eventModal').classList.remove('hidden');
         },
-        eventContent: info => {
-          const div = document.createElement('div');
-          div.className = 'flex items-center';
-          div.innerHTML = `<img src="${info.event.extendedProps.image}" class="w-8 h-8 rounded mr-2"><span>${info.event.title}</span>`;
-          return { domNodes: [div] };
+        eventContent: function(info) {
+          return {
+            html: `<div class="flex items-center space-x-2">
+              <img src="${info.event.extendedProps.image}" class="w-8 h-8 rounded object-cover">
+              <span class="font-medium text-xs">${info.event.title}</span>
+            </div>`
+          };
         }
       });
-      cal.render();
+      calendar.render();
+
+      // Modal info primera vegada
+      if (!sessionStorage.getItem('infoShown')) {
+        document.getElementById('infoModal').classList.remove('hidden');
+        sessionStorage.setItem('infoShown', 'true');
+      }
     });
 
-    // MODALS
-    function closeModal() { document.getElementById('eventModal').classList.add('hidden'); }
-    function closeInfoModal() { document.getElementById('infoModal').classList.add('hidden'); }
-    function showInfoModal() { document.getElementById('infoModal').classList.remove('hidden'); }
-    window.onclick = e => { if (e.target.classList.contains('fixed')) { closeModal(); closeInfoModal(); }};
+    // Tancar modals clicant fora
+    window.onclick = e => {
+      if (e.target.classList.contains('fixed')) e.target.classList.add('hidden');
+    };
   </script>
 </body>
 </html>

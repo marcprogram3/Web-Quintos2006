@@ -1,0 +1,38 @@
+<!-- MODAL ESDEVENIMENT -->
+<div id="eventModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+  <div class="modal-content p-0 w-full max-w-lg mx-4">
+    <span class="close absolute top-4 right-4 text-2xl cursor-pointer hover:text-gray-600" onclick="closeModal()">&times;</span>
+    <img id="eventImage" class="modal-image" src="" alt="">
+    <div class="p-8">
+      <h2 id="eventTitle" class="text-2xl font-bold mb-4 text-gray-800"></h2>
+      <div class="grid grid-cols-3 gap-4 mb-6 text-sm">
+        <div class="text-center">
+          <i class="fas fa-calendar-day text-red-500 text-lg mb-2"></i>
+          <span id="eventDate" class="font-semibold"></span>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-map-marker-alt text-blue-500 text-lg mb-2"></i>
+          <span id="eventLocation" class="font-semibold"></span>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-clock text-purple-500 text-lg mb-2"></i>
+          <span id="eventTime" class="font-semibold"></span>
+        </div>
+      </div>
+      <p id="eventDescription" class="text-gray-700 text-sm"></p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL INFO -->
+<div id="infoModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+  <div class="modal-content p-8 w-full max-w-md mx-4">
+    <span class="close absolute top-4 right-4 text-2xl cursor-pointer hover:text-gray-600" onclick="closeInfoModal()">&times;</span>
+    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Informació</h2>
+    <div class="space-y-4 text-sm text-gray-700">
+      <p><strong>Objectiu:</strong> Informació oficial dels Quintos 2006 de l'Ametlla de Mar.</p>
+      <p><strong>Privacitat:</strong> No es recolleixen dades personals ni cookies.</p>
+      <p><strong>Contacte:</strong> marc.program3@gmail.com</p>
+    </div>
+  </div>
+</div>
