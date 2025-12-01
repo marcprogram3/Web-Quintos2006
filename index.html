@@ -11,6 +11,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* MILLORA ESPECIAL PER MÒBILS */
+    @media (max-width: 640px) {
+      .modal-content {
+        margin: 1rem;
+        width: calc(100% - 2rem);
+        max-height: 95vh;
+      }
+      .modal-image {
+        height: 45vh !important;
+        object-fit: contain;
+      }
+      #eventModal .p-8 {
+        padding: 1.5rem !important;
+      }
+      #eventTitle {
+        font-size: 1.5rem !important;
+      }
+      #eventModal .text-lg {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
 </head>
 <body class="min-h-screen">
 
@@ -32,7 +55,7 @@
 
   <main class="bg-cover bg-center bg-fixed" style="background-image: url('img/fons-web.jpg')">
 
-    <!-- NOVETATS - FIRA DE NADAL -->
+    <!-- NOVETATS -->
     <section class="py-16">
       <div class="container mx-auto px-6">
         <div class="glass-effect max-w-4xl mx-auto p-6 rounded-lg">
@@ -115,22 +138,25 @@
     </div>
   </footer>
 
-  <!-- MODALS -->
-  <div id="eventModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
-    <div class="modal-content p-0 w-full max-w-lg mx-4">
-      <span class="close absolute top-4 right-4 text-3xl cursor-pointer text-white hover:text-gray-300 z-10" onclick="this.parentElement.parentElement.classList.add('hidden')">&times;</span>
-      <img id="eventImage" class="modal-image w-full" src="" alt="">
-      <div class="p-8 bg-white">
-        <h2 id="eventTitle" class="text-2xl font-bold mb-4"></h2>
-        <p class="text-lg mb-2"><i class="fas fa-calendar-day text-red-500 mr-2"></i><span id="eventDate"></span></p>
-        <p class="text-lg mb-2"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i><span id="eventLocation"></span></p>
-        <p class="text-lg mb-4"><i class="fas fa-clock text-purple-500 mr-2"></i><span id="eventTime"></span></p>
-        <p id="eventDescription" class="text-gray-700"></p>
+  <!-- MODAL ESDEVENIMENT -->
+  <div id="eventModal" class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 hidden overflow-y-auto">
+    <div class="modal-content relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 my-8">
+      <button class="absolute top-3 right-4 text-4xl text-white bg-black/50 rounded-full w-10 h-10 leading-none z-20 hover:bg-black/70" onclick="this.closest('#eventModal').classList.add('hidden')">&times;</button>
+      <img id="eventImage" class="modal-image w-full rounded-t-2xl" src="" alt="">
+      <div class="p-6 md:p-8">
+        <h2 id="eventTitle" class="text-2xl md:text-3xl font-bold mb-4 text-center"></h2>
+        <div class="space-y-3 text-center">
+          <p class="text-lg"><i class="fas fa-calendar-day text-red-500 mr-2"></i><span id="eventDate" class="font-semibold"></span></p>
+          <p class="text-lg"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i><span id="eventLocation" class="font-semibold"></span></p>
+          <p class="text-lg"><i class="fas fa-clock text-purple-500 mr-2"></i><span id="eventTime" class="font-semibold"></span></p>
+        </div>
+        <p id="eventDescription" class="text-gray-700 mt-6 text-center text-base md:text-lg"></p>
       </div>
     </div>
   </div>
 
-  <div id="infoModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+  <!-- MODAL INFO -->
+  <div id="infoModal" class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 hidden">
     <div class="modal-content p-8 w-full max-w-md mx-4 bg-white rounded-lg">
       <span class="close absolute top-4 right-4 text-2xl cursor-pointer" onclick="this.parentElement.parentElement.classList.add('hidden')">&times;</span>
       <h2 class="text-2xl font-bold mb-6 text-center">Informació</h2>
@@ -142,13 +168,13 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT FINAL -->
+  <!-- JAVASCRIPT -->
   <script>
     const events = [
       { title: 'Castanyada', start: '2025-10-25', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
       { title: 'Castanyada', start: '2025-10-26', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
       { title: 'Castanyada', start: '2025-10-31', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
-      { title: 'Castanyada', start: '2025-11-01', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
+      { title: 'Castanyada', start: '2025-11-11-01', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
       { title: 'Presentació Hereus, Pubilles i Quintos', start: '2025-11-15', image: 'img/cartell-presentacio.jpg', location: 'Poliesportiu Municipal', time: '18:00', description: 'Presentació oficial' },
       { title: 'Fira de Nadal', start: '2025-12-06', image: 'img/cartell-firanadal.jpg', location: 'Parc Bon Repòs', time: '11:00–14:00 i 17:00–20:00 h', description: 'Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d\'una cistella i ambient nadalenc!' },
       { title: 'Fira de Nadal', start: '2025-12-07', image: 'img/cartell-firanadal.jpg', location: 'Parc Bon Repòs', time: '11:00–14:00 i 17:00–20:00 h', description: 'Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d\'una cistella i ambient nadalenc!' },
@@ -189,7 +215,7 @@
         events: events,
         eventClick: function(info) {
           document.getElementById('eventTitle').textContent = info.event.title;
-          document.getElementById('eventDate').textContent = info.event.start.toLocaleDateString('ca-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+          document.getElementById('eventDate').textContent = info.event.start.toLocaleDateString('ca-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
           document.getElementById('eventLocation').textContent = info.event.extendedProps.location || '';
           document.getElementById('eventTime').textContent = info.event.extendedProps.time || '';
           document.getElementById('eventDescription').textContent = info.event.extendedProps.description || '';
@@ -214,7 +240,7 @@
       }
     });
 
-    // Tancar modals clicant fora
+    // Tancar modals
     window.onclick = e => {
       if (e.target.classList.contains('fixed')) e.target.classList.add('hidden');
     };
