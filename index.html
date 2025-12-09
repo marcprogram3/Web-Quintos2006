@@ -11,29 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    /* MILLORA ESPECIAL PER MÒBILS */
-    @media (max-width: 640px) {
-      .modal-content {
-        margin: 1rem;
-        width: calc(100% - 2rem);
-        max-height: 95vh;
-      }
-      .modal-image {
-        height: 45vh !important;
-        object-fit: contain;
-      }
-      #eventModal .p-8 {
-        padding: 1.5rem !important;
-      }
-      #eventTitle {
-        font-size: 1.5rem !important;
-      }
-      #eventModal .text-lg {
-        font-size: 1rem !important;
-      }
-    }
-  </style>
 </head>
 <body class="min-h-screen">
 
@@ -55,52 +32,39 @@
 
   <main class="bg-cover bg-center bg-fixed" style="background-image: url('img/fons-web.jpg')">
 
-    <!-- NOVETATS -->
+    <!-- NOVETATS (BUIDA) -->
     <section class="py-16">
       <div class="container mx-auto px-6">
-        <div class="glass-effect max-w-4xl mx-auto p-6 rounded-lg">
-          <div class="text-center">
-            <img src="img/cartell-firanadal.jpg" alt="Fira de Nadal 2025" class="w-full max-w-md mx-auto rounded-lg shadow-lg">
-            <h3 class="text-3xl font-bold text-gray-800 mt-6 mb-2">Fira de Nadal 2025</h3>
-            <p class="text-gray-600 text-lg mb-2"><i class="fas fa-calendar-alt mr-2"></i>6, 7 i 8 de desembre</p>
-            <p class="text-gray-600 text-lg mb-2"><i class="fas fa-clock mr-2"></i>11:00–14:00 h i 17:00–20:00 h</p>
-            <p class="text-gray-600 text-lg mb-6"><i class="fas fa-map-marker-alt mr-2"></i>Parc Bon Repòs</p>
-            <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary text-lg">
-              <i class="fab fa-instagram mr-2"></i> Més informació
-            </a>
-          </div>
+        <div class="glass-effect max-w-4xl mx-auto p-12 rounded-lg text-center">
+          <p class="text-2xl font-bold text-gray-800">Properament més novetats!</p>
+          <p class="text-lg text-gray-600 mt-4">Estigueu atents al calendari i a Instagram per les properes festes.</p>
         </div>
       </div>
     </section>
 
-    <!-- COMPTE ENRERE -->
+    <!-- COMPTE ENRERE (DESACTIVAT) -->
     <section class="py-16">
       <div class="container mx-auto px-6">
         <h2 class="text-4xl font-bold text-center mb-8 section-title">Compte enrere</h2>
-        <div class="glass-effect max-w-4xl mx-auto p-8 rounded-lg text-center bg-white">
-          <p class="text-2xl font-bold text-gray-800 mb-2">Fira de Nadal</p>
-          <p class="text-lg text-gray-600 mb-6">6, 7 i 8 de desembre · Parc Bon Repòs</p>
-          <div class="grid grid-cols-4 gap-4 max-w-md mx-auto">
-            <div class="countdown-box"><div id="days" class="text-4xl">0</div><div class="countdown-label">dies</div></div>
-            <div class="countdown-box"><div id="hours" class="text-4xl">0</div><div class="countdown-label">hores</div></div>
-            <div class="countdown-box"><div id="minutes" class="text-4xl">0</div><div class="countdown-label">minuts</div></div>
-            <div class="countdown-box"><div id="seconds" class="text-4xl">0</div><div class="countdown-label">segons</div></div>
-          </div>
+        <div class="glass-effect max-w-4xl mx-auto p-12 rounded-lg text-center bg-white">
+          <p class="text-2xl font-bold text-gray-800">Properament més esdeveniments!</p>
+          <p class="text-lg text-gray-600 mt-4">Quan tinguem la propera data, el compte enrere tornarà a activar-se.</p>
         </div>
       </div>
     </section>
 
     <!-- SOBRE NOSALTRES -->
-    <section class="py-16">
-      <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-12 section-title">Sobre Nosaltres</h2>
-        <div class="glass-effect max-w-4xl mx-auto p-8 rounded-lg text-center">
-          <p class="text-lg text-gray-800 leading-relaxed">
-            Som els <strong>Quintos 2006</strong> de l'Ametlla de Mar, un grup unit per la tradició i l'alegria de compartir moments únics. Organitzem esdeveniments que omplen de vida el nostre poble. <strong>Vine i forma part de la nostra història!</strong>
-          </p>
-        </div>
-      </div>
-    </section>
+<section class="py-16">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-12 section-title">Sobre Nosaltres</h2>
+    <div class="glass-effect max-w-4xl mx-auto p-8 rounded-lg text-center">
+      <p class="text-lg text-gray-800 leading-relaxed mb-8">
+        Som els <strong>Quintos 2006</strong> de l'Ametlla de Mar, un grup unit per la tradició i l'alegria de compartir moments únics. Organitzem esdeveniments que omplen de vida el nostre poble. <strong>Vine i forma part de la nostra història!</strong>
+      </p>
+      <img src="img/foto-quinta2006.jpg" alt="Foto dels Quintos 2006" class="w-full max-w-2xl mx-auto rounded-lg shadow-2xl">
+    </div>
+  </div>
+</section>
 
     <!-- CALENDARI -->
     <section class="py-16">
@@ -129,7 +93,8 @@
   <!-- FOOTER -->
   <footer class="py-8">
     <div class="footer-content container mx-auto px-6 text-center text-white">
-      <p class="text-xl font-semibold mb-4">Quintos 2006 - L'Ametlla de Mar</p>
+      <p class_
+="text-xl font-semibold mb-4">Quintos 2006 - L'Ametlla de Mar</p>
       <div class="flex justify-center space-x-6 mb-4">
         <a href="https://www.instagram.com/quintos2006_" target="_blank" class="text-3xl hover:text-pink-400"><i class="fab fa-instagram"></i></a>
         <a href="mailto:marc.program3@gmail.com" class="text-3xl hover:text-blue-400"><i class="fas fa-envelope"></i></a>
@@ -138,7 +103,7 @@
     </div>
   </footer>
 
-  <!-- MODAL ESDEVENIMENT -->
+  <!-- MODALS -->
   <div id="eventModal" class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 hidden overflow-y-auto">
     <div class="modal-content relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 my-8">
       <button class="absolute top-3 right-4 text-4xl text-white bg-black/50 rounded-full w-10 h-10 leading-none z-20 hover:bg-black/70" onclick="this.closest('#eventModal').classList.add('hidden')">&times;</button>
@@ -155,7 +120,6 @@
     </div>
   </div>
 
-  <!-- MODAL INFO -->
   <div id="infoModal" class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 hidden">
     <div class="modal-content p-8 w-full max-w-md mx-4 bg-white rounded-lg">
       <span class="close absolute top-4 right-4 text-2xl cursor-pointer" onclick="this.parentElement.parentElement.classList.add('hidden')">&times;</span>
@@ -174,7 +138,7 @@
       { title: 'Castanyada', start: '2025-10-25', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
       { title: 'Castanyada', start: '2025-10-26', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
       { title: 'Castanyada', start: '2025-10-31', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
-      { title: 'Castanyada', start: '2025-11-11-01', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
+      { title: 'Castanyada', start: '2025-11-01', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
       { title: 'Presentació Hereus, Pubilles i Quintos', start: '2025-11-15', image: 'img/cartell-presentacio.jpg', location: 'Poliesportiu Municipal', time: '18:00', description: 'Presentació oficial' },
       { title: 'Fira de Nadal', start: '2025-12-06', image: 'img/cartell-firanadal.jpg', location: 'Parc Bon Repòs', time: '11:00–14:00 i 17:00–20:00 h', description: 'Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d\'una cistella i ambient nadalenc!' },
       { title: 'Fira de Nadal', start: '2025-12-07', image: 'img/cartell-firanadal.jpg', location: 'Parc Bon Repòs', time: '11:00–14:00 i 17:00–20:00 h', description: 'Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d\'una cistella i ambient nadalenc!' },
@@ -182,60 +146,47 @@
     ];
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Compte enrere
-      function updateCountdown() {
-        const now = new Date().getTime();
-        const nextEvent = events.find(e => new Date(e.start) > now);
-        if (!nextEvent) {
-          document.getElementById('event-name').textContent = 'Tots els esdeveniments han passat!';
-          document.getElementById('event-date').textContent = '';
-          ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '0');
-          return;
-        }
-        const diff = new Date(nextEvent.start) - now;
-        const days = Math.floor(diff / 86400000);
-        const hours = Math.floor((diff % 86400000) / 3600000);
-        const minutes = Math.floor((diff % 3600000) / 60000);
-        const seconds = Math.floor((diff % 60000) / 1000);
-        document.getElementById('days').textContent = days;
-        document.getElementById('hours').textContent = hours;
-        document.getElementById('minutes').textContent = minutes;
-        document.getElementById('seconds').textContent = seconds;
-      }
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
+      // Compte enrere desactivat
+      const countdownEls = ['event-name', 'event-date', 'days', 'hours', 'minutes', 'seconds'];
+      countdownEls.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = id === 'event-name' ? 'Properament més esdeveniments!' : id === 'event-date' ? 'Quan tinguem la propera data, el compte enrere tornarà.' : '0';
+      });
 
       // Calendari
       const calendarEl = document.getElementById('calendar');
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        initialDate: '2025-12-01',
-        locale: 'ca',
-        headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth' },
-        events: events,
-        eventClick: function(info) {
-          document.getElementById('eventTitle').textContent = info.event.title;
-          document.getElementById('eventDate').textContent = info.event.start.toLocaleDateString('ca-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-          document.getElementById('eventLocation').textContent = info.event.extendedProps.location || '';
-          document.getElementById('eventTime').textContent = info.event.extendedProps.time || '';
-          document.getElementById('eventDescription').textContent = info.event.extendedProps.description || '';
-          document.getElementById('eventImage').src = info.event.extendedProps.image;
-          document.getElementById('eventModal').classList.remove('hidden');
-        },
-        eventContent: function(info) {
-          return {
-            html: `<div class="flex items-center space-x-2">
-              <img src="${info.event.extendedProps.image}" class="w-8 h-8 rounded object-cover">
-              <span class="font-medium text-xs">${info.event.title}</span>
-            </div>`
-          };
-        }
-      });
-      calendar.render();
+      if (calendarEl) {
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          initialDate: '2025-12-01',
+          locale: 'ca',
+          headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth' },
+          events: events,
+          eventClick: function(info) {
+            document.getElementById('eventTitle').textContent = info.event.title;
+            document.getElementById('eventDate').textContent = info.event.start.toLocaleDateString('ca-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+            document.getElementById('eventLocation').textContent = info.event.extendedProps.location || '';
+            document.getElementById('eventTime').textContent = info.event.extendedProps.time || '';
+            document.getElementById('eventDescription').textContent = info.event.extendedProps.description || '';
+            document.getElementById('eventImage').src = info.event.extendedProps.image;
+            document.getElementById('eventModal').classList.remove('hidden');
+          },
+          eventContent: function(info) {
+            return {
+              html: `<div class="flex items-center space-x-2">
+                <img src="${info.event.extendedProps.image}" class="w-8 h-8 rounded object-cover">
+                <span class="font-medium text-xs">${info.event.title}</span>
+              </div>`
+            };
+          }
+        });
+        calendar.render();
+      }
 
       // Modal info primera vegada
       if (!sessionStorage.getItem('infoShown')) {
-        document.getElementById('infoModal').classList.remove('hidden');
+        const modal = document.getElementById('infoModal');
+        if (modal) modal.classList.remove('hidden');
         sessionStorage.setItem('infoShown', 'true');
       }
     });
