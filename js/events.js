@@ -1,15 +1,82 @@
 const events = [
-  // Castanyada 2025
-  { title: 'Castanyada', date: '2025-10-25T17:30:00', location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', time: '17:30 - 20:30', image: 'img/cartell-castanyada.jpg', description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' },
-  { title: 'Castanyada', date: '2025-10-26T17:30:00', location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', time: '17:30 - 20:30', image: 'img/cartell-castanyada.jpg', description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' },
-  { title: 'Castanyada', date: '2025-10-31T17:30:00', location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', time: '17:30 - 20:30', image: 'img/cartell-castanyada.jpg', description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' },
-  { title: 'Castanyada', date: '2025-11-01T17:30:00', location: 'Plaça Nova, Quatre Cantons, Plaça Catalunya', time: '17:30 - 20:30', image: 'img/cartell-castanyada.jpg', description: 'Celebra la Castanyada amb nosaltres! Gaudeix de castanyes i panellets.' },
-
-  // Presentació
-  { title: 'Presentació Hereus, Pubilles i Quintos', date: '2025-11-15T18:00:00', location: 'Poliesportiu Municipal', time: '18:00', image: 'img/cartell-presentacio.jpg', description: 'Presentació oficial dels Hereus, Pubilles i Quintos 2006.' },
-
-  // FIRA DE NADAL 2025 - ARA AMB CARTELL!
-  { title: 'Fira de Nadal', date: '2025-12-06T10:00:00', location: 'Parc Bon Repòs', time: 'Tot el dia', image: 'img/cartell-firanadal.jpg', description: 'Fira de Nadal dels Quintos 2006! Paradetes, regals, dolços i ambient nadalenc al Parc Bon Repòs.' },
-  { title: 'Fira de Nadal', date: '2025-12-07T10:00:00', location: 'Parc Bon Repòs', time: 'Tot el dia', image: 'img/cartell-firanadal.jpg', description: 'Fira de Nadal dels Quintos 2006! Paradetes, regals, dolços i ambient nadalenc al Parc Bon Repòs.' },
-  { title: 'Fira de Nadal', date: '2025-12-08T10:00:00', location: 'Parc Bon Repòs', time: 'Tot el dia', image: 'img/cartell-firanadal.jpg', description: 'Fira de Nadal dels Quintos 2006! Paradetes, regals, dolços i ambient nadalenc al Parc Bon Repòs.' }
+  { 
+    title: 'Castanyada', 
+    start: '2025-10-25', 
+    image: 'img/cartell-castanyada.jpg', 
+    location: 'Plaça Nova i voltants', 
+    time: '17:30 - 20:30', 
+    description: 'Castanyada tradicional' 
+  },
+  { 
+    title: 'Castanyada', 
+    start: '2025-10-26', 
+    image: 'img/cartell-castanyada.jpg', 
+    location: 'Plaça Nova i voltants', 
+    time: '17:30 - 20:30', 
+    description: 'Castanyada tradicional' 
+  },
+  { 
+    title: 'Castanyada', 
+    start: '2025-10-31', 
+    image: 'img/cartell-castanyada.jpg', 
+    location: 'Plaça Nova i voltants', 
+    time: '17:30 - 20:30', 
+    description: 'Castanyada tradicional' 
+  },
+  { 
+    title: 'Castanyada', 
+    start: '2025-11-01', 
+    image: 'img/cartell-castanyada.jpg', 
+    location: 'Plaça Nova i voltants', 
+    time: '17:30 - 20:30', 
+    description: 'Castanyada tradicional' 
+  },
+  { 
+    title: 'Presentació Hereus, Pubilles i Quintos', 
+    start: '2025-11-15', 
+    image: 'img/cartell-presentacio.jpg', 
+    location: 'Poliesportiu Municipal', 
+    time: '18:00', 
+    description: 'Presentació oficial' 
+  },
+  { 
+    title: 'Fira de Nadal', 
+    start: '2025-12-06', 
+    image: 'img/cartell-firanadal.jpg', 
+    location: 'Parc Bon Repòs', 
+    time: '11:00–14:00 i 17:00–20:00 h', 
+    description: 'Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d\'una cistella i ambient nadalenc!' 
+  },
+  { 
+    title: 'Fira de Nadal', 
+    start: '2025-12-07', 
+    image: 'img/cartell-firanadal.jpg', 
+    location: 'Parc Bon Repòs', 
+    time: '11:00–14:00 i 17:00–20:00 h', 
+    description: 'Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d\'una cistella i ambient nadalenc!' 
+  },
+  { 
+    title: 'Fira de Nadal', 
+    start: '2025-12-08', 
+    image: 'img/cartell-firanadal.jpg', 
+    location: 'Parc Bon Repòs', 
+    time: '11:00–14:00 i 17:00–20:00 h', 
+    description: 'Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d\'una cistella i ambient nadalenc!' 
+  },
+  { 
+  title: 'Correbars 2026', 
+  start: '2026-01-24', 
+  image: 'img/cartell-correbars.jpg', 
+  location: 'Ajuntament', 
+  time: '17:00 h', 
+  description: 'Aquest correbars no és només festa.\nÉs un homenatge a les nostres arrels i un gest de suport als pescadors, que avui pateixen dures mesures que posen en risc la seva feina i el futur del nostre poble. Defensar la pesca és defensar La Cala.'
+},
+{ 
+  title: 'Candelera', 
+  start: '2026-02-02', 
+  image: 'img/cartell-candelera.jpg', 
+  location: 'Església', 
+  time: '19:00 h', 
+  description: 'Solemne Processó en honor a la nostra patrona Mare de Déu de la Candelera. Portaran la imatge els Quintos i Quintes del 2006.'
+},
 ];

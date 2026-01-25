@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/ca.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@700&family=Barlow:wght@800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -16,42 +16,62 @@
 
   <!-- HEADER -->
   <header class="py-2">
-    <div class="container mx-auto px-4 flex items-center justify-between">
-      <div class="info-icon cursor-pointer" onclick="document.getElementById('infoModal').classList.remove('hidden')">
-        <i class="fas fa-circle-info text-lg"></i>
-      </div>
-      <img src="img/logo-quintos-2006.png" alt="Logo" class="max-w-sm md:max-w-md mx-auto">
-      <div class="flex flex-col items-center">
-        <a href="https://www.ametllamar.cat/ajuntament/inici/" target="_blank">
-          <img src="img/escut-ametlla.png" alt="Escut" class="w-20 md:w-24 hover:scale-105 transition-transform">
-        </a>
-        <p class="escut-text">Ajuntament de l'Ametlla de Mar</p>
-      </div>
+  <div class="container mx-auto px-4 flex items-center justify-center relative">
+    <div class="info-icon cursor-pointer absolute left-4 top-1/2 -translate-y-1/2" onclick="document.getElementById('infoModal').classList.remove('hidden')">
+      <i class="fas fa-circle-info text-lg"></i>
     </div>
-  </header>
+    
+    <img src="img/logo-quintos-2006.png" alt="Logo" class="max-w-sm md:max-w-md">
+    
+    <div class="flex flex-col items-center absolute right-4 top-1/2 -translate-y-1/2">
+      <a href="https://www.ametllamar.cat/ajuntament/inici/" target="_blank">
+        <img src="img/escut-ametlla.png" alt="Escut" class="w-20 md:w-24 hover:scale-105 transition-transform">
+      </a>
+      <p class="escut-text">Ajuntament de l'Ametlla de Mar</p>
+    </div>
+  </div>
+</header>
 
   <main class="bg-cover bg-center bg-fixed" style="background-image: url('img/fons-web.jpg')">
 
-    <!-- NOVETATS (BUIDA) -->
-    <section class="py-16">
-      <div class="container mx-auto px-6">
-        <div class="glass-effect max-w-4xl mx-auto p-12 rounded-lg text-center">
-          <p class="text-2xl font-bold text-gray-800">Properament més novetats!</p>
-          <p class="text-lg text-gray-600 mt-4">Estigueu atents al calendari i a Instagram per les properes festes.</p>
-        </div>
+    <!-- NOVETATS -->
+<section class="py-16">
+  <div class="container mx-auto px-6">
+    <div class="glass-effect max-w-4xl mx-auto p-6 rounded-lg">
+      <div class="text-center">
+        <img src="img/cartell-candelera.jpg" alt="Candelera 2026" class="w-full max-w-md mx-auto rounded-lg shadow-lg">
+        <h3 class="text-3xl font-bold text-gray-800 mt-6 mb-2">Processó 2026</h3>
+        <p class="text-gray-600 text-lg mb-2"><i class="fas fa-calendar-alt mr-2"></i>2 de febrer</p>
+        <p class="text-gray-600 text-lg mb-2"><i class="fas fa-clock mr-2"></i>19:00 h</p>
+        <p class="text-gray-600 text-lg mb-6"><i class="fas fa-map-marker-alt mr-2"></i>Església</p>
+        <p class="text-gray-700 text-base mb-6 text-center">
+          Solemne Processó en honor a la nostra patrona Mare de Déu de la Candelera.<br>
+          Portaran la imatge els Quintos i Quintes del 2006.
+        </p>
+        <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary text-lg">
+          <i class="fab fa-instagram mr-2"></i> Més informació
+        </a>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- COMPTE ENRERE (DESACTIVAT) -->
-    <section class="py-16">
-      <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-8 section-title">Compte enrere</h2>
-        <div class="glass-effect max-w-4xl mx-auto p-12 rounded-lg text-center bg-white">
-          <p class="text-2xl font-bold text-gray-800">Properament més esdeveniments!</p>
-          <p class="text-lg text-gray-600 mt-4">Quan tinguem la propera data, el compte enrere tornarà a activar-se.</p>
-        </div>
+<!-- COMPTE ENRERE -->
+<section class="py-16">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-8 section-title">Compte enrere</h2>
+    <div class="glass-effect max-w-4xl mx-auto p-8 rounded-lg text-center bg-white">
+      <p id="event-name" class="text-2xl font-bold text-gray-800 mb-2">Candelera</p>
+      <p id="event-date" class="text-lg text-gray-600 mb-6"></p>
+      <div class="grid grid-cols-4 gap-4 max-w-md mx-auto">
+        <div class="countdown-box"><div id="days" class="text-4xl">0</div><div class="countdown-label">dies</div></div>
+        <div class="countdown-box"><div id="hours" class="text-4xl">0</div><div class="countdown-label">hores</div></div>
+        <div class="countdown-box"><div id="minutes" class="text-4xl">0</div><div class="countdown-label">minuts</div></div>
+        <div class="countdown-box"><div id="seconds" class="text-4xl">0</div><div class="countdown-label">segons</div></div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
     <!-- SOBRE NOSALTRES -->
     <section class="py-16">
@@ -148,24 +168,53 @@
         image: 'img/cartell-correbars.jpg', 
         location: "Ajuntament de l'Ametlla de Mar", 
         time: '17:00 h', 
-        description: 'Aquest correbars no és només festa.\nÉs un homenatge a les nostres arrels i un gest de suport als pescadors, que avui pateixen dures mesures que posen en risc la seva feina i el futur del nostre poble. Defensar la pesca és defensar La Cala.'
-},
+        description: "Aquest correbars no és només festa.\nÉs un homenatge a les nostres arrels i un gest de suport als pescadors, que avui pateixen dures mesures que posen en risc la seva feina i el futur del nostre poble. Defensar la pesca és defensar La Cala."
+      },
+      { 
+        title: 'Candelera', 
+        start: '2026-02-02', 
+        image: 'img/cartell-candelera.jpg', 
+        location: 'Església', 
+        time: '19:00 h', 
+        description: 'Solemne Processó en honor a la nostra patrona Mare de Déu de la Candelera. Portaran la imatge els Quintos i Quintes del 2006.'
+      }
     ];
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Compte enrere desactivat
-      const countdownEls = ['event-name', 'event-date', 'days', 'hours', 'minutes', 'seconds'];
-      countdownEls.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = id === 'event-name' ? 'Properament més esdeveniments!' : id === 'event-date' ? 'Quan tinguem la propera data, el compte enrere tornarà.' : '0';
-      });
+      // Compte enrere actiu fins a Candelera (2 febrer 19:00)
+function updateCountdown() {
+  const target = new Date('2026-02-02T19:00:00').getTime();
+  const now = new Date().getTime();
+  const diff = target - now;
+
+  if (diff <= 0) {
+    document.getElementById('event-name').textContent = 'Candelera en curs!';
+    document.getElementById('event-date').textContent = 'Ja està aquí!';
+    ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '0');
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById('event-name').textContent = 'Candelera';
+  document.getElementById('event-date').textContent = '2 de febrer - 19:00 h';
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = hours;
+  document.getElementById('minutes').textContent = minutes;
+  document.getElementById('seconds').textContent = seconds;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
       // Calendari
       const calendarEl = document.getElementById('calendar');
       if (calendarEl) {
         const calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth',
-          initialDate: '2026-01-01',  // Obre sempre al gener 2026
+          initialDate: '2026-01-01',
           locale: 'ca',
           headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth' },
           events: events,
