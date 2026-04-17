@@ -79,4 +79,12 @@ const events = [
   time: '19:00 h', 
   description: 'Solemne Processó en honor a la nostra patrona Mare de Déu de la Candelera. Portaran la imatge els Quintos i Quintes del 2006.'
 },
+{ 
+  title: 'Carnaval', 
+  start: '2026-02-20', 
+  image: 'img/cartell-carnaval.jpg', 
+  location: 'Sala SCER', 
+  time: '23:00 h – 04:00 h', 
+  description: 'Aquest divendres 20 arriba la primera festa de carnaval. Els Quintos 2006 us convidem a una nit plena de música, bon ambient i molta festa 🎉'
+},
 ];

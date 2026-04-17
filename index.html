@@ -4,10 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quintos 2006 - L'Ametlla de Mar</title>
-  
-  <!-- AFEGIT PER PWA: Enllaç al manifest.json -->
   <link rel="manifest" href="manifest.json">
-  
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
@@ -18,134 +16,198 @@
 </head>
 <body class="min-h-screen">
 
-  <!-- HEADER -->
+  <!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
   <header class="py-2">
-  <div class="container mx-auto px-4 flex items-center justify-center relative">
-    <div class="info-icon cursor-pointer absolute left-4 top-1/2 -translate-y-1/2" onclick="document.getElementById('infoModal').classList.remove('hidden')">
-      <i class="fas fa-circle-info text-lg"></i>
-    </div>
-    
-    <img src="img/logo-quintos-2006.png" alt="Logo" class="max-w-sm md:max-w-md">
-    
-    <div class="flex flex-col items-center absolute right-4 top-1/2 -translate-y-1/2">
-      <a href="https://www.ametllamar.cat/ajuntament/inici/" target="_blank">
-        <img src="img/escut-ametlla.png" alt="Escut" class="w-20 md:w-24 hover:scale-105 transition-transform">
-      </a>
-      <p class="escut-text">Ajuntament de l'Ametlla de Mar</p>
-    </div>
-  </div>
-</header>
+    <div class="container mx-auto px-4">
 
-  <main class="bg-cover bg-center bg-fixed" style="background-image: url('img/fons-web.jpg')">
+      <div class="header-row">
+        <!-- Info -->
+        <div class="info-icon cursor-pointer absolute left-4"
+             style="top:50%;transform:translateY(-50%)"
+             onclick="document.getElementById('infoModal').classList.remove('hidden')">
+          <i class="fas fa-circle-info text-lg"></i>
+        </div>
 
-    <!-- NOVETATS -->
-<section class="py-16">
-  <div class="container mx-auto px-6">
-    <div class="glass-effect max-w-4xl mx-auto p-6 rounded-lg">
-      <div class="text-center">
-        <img src="img/cartell-carnaval.jpg" alt="Carnaval 2026" class="w-full max-w-md mx-auto rounded-lg shadow-lg">
-        <h3 class="text-3xl font-bold text-gray-800 mt-6 mb-2">Carnaval 2026</h3>
-        <p class="text-gray-600 text-lg mb-2"><i class="fas fa-calendar-alt mr-2"></i>20 de febrer</p>
-        <p class="text-gray-600 text-lg mb-2"><i class="fas fa-clock mr-2"></i>23:00 h – 04:00 h</p>
-        <p class="text-gray-600 text-lg mb-6"><i class="fas fa-map-marker-alt mr-2"></i>Sala SCER</p>
-        <p class="text-gray-700 text-base mb-6 text-center">
-          Aquest divendres 20 arriba la primera festa de carnaval.<br>
-          Els Quintos 2006 us convidem a una nit plena de música, bon ambient i molta festa 🎉
-        </p>
-        <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary text-lg">
-          <i class="fab fa-instagram mr-2"></i> Més informació
-        </a>
+        <!-- Logo -->
+        <img src="img/logo-quintos-2006.png" alt="Logo" class="max-w-sm md:max-w-md fade-in mx-auto">
+
+        <!-- Escut -->
+        <div class="flex flex-col items-center absolute right-4"
+             style="top:50%;transform:translateY(-50%)">
+          <a href="https://www.ametllamar.cat/ajuntament/inici/" target="_blank">
+            <img src="img/escut-ametlla.png" alt="Escut" class="w-20 md:w-24 hover:scale-105 transition-transform">
+          </a>
+          <p class="escut-text">Ajuntament de l'Ametlla de Mar</p>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- COMPTE ENRERE -->
-<section class="py-16">
-  <div class="container mx-auto px-6">
-    <h2 class="text-4xl font-bold text-center mb-8 section-title">Compte enrere</h2>
-    <div class="glass-effect max-w-4xl mx-auto p-8 rounded-lg text-center bg-white">
-      <p id="event-name" class="text-2xl font-bold text-gray-800 mb-2">Carnaval</p>
-      <p id="event-date" class="text-lg text-gray-600 mb-6"></p>
-      <div class="grid grid-cols-4 gap-4 max-w-md mx-auto">
-        <div class="countdown-box"><div id="days" class="text-4xl">0</div><div class="countdown-label">dies</div></div>
-        <div class="countdown-box"><div id="hours" class="text-4xl">0</div><div class="countdown-label">hores</div></div>
-        <div class="countdown-box"><div id="minutes" class="text-4xl">0</div><div class="countdown-label">minuts</div></div>
-        <div class="countdown-box"><div id="seconds" class="text-4xl">0</div><div class="countdown-label">segons</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+      <!-- Subtítol -->
+      <p class="header-tagline">
+        Festes · Tradicions · <span>L'Ametlla de Mar</span> · Quinta 2006
+      </p>
 
-    <!-- SOBRE NOSALTRES -->
-    <section class="py-16">
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════ NAVEGACIÓ ═══════════════════════════ -->
+  <nav class="main-nav">
+    <div class="nav-inner">
+      <a href="#novetats"        class="nav-link"><i class="fas fa-star"></i>Novetats</a>
+      <a href="#compte-enrere"   class="nav-link"><i class="fas fa-hourglass-half"></i>Compte enrere</a>
+      <a href="#sobre-nosaltres" class="nav-link"><i class="fas fa-users"></i>Nosaltres</a>
+      <a href="#calendari"       class="nav-link"><i class="fas fa-calendar-alt"></i>Calendari</a>
+      <a href="#contacte"        class="nav-link"><i class="fas fa-envelope"></i>Contacte</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════ MAIN ════════════════════════════════ -->
+  <main class="bg-cover bg-center bg-fixed" style="background-image:url('img/fons-web.jpg')">
+
+    <!-- ── NOVETATS ── -->
+    <section id="novetats" class="py-16">
       <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-12 section-title">Sobre Nosaltres</h2>
-        <div class="glass-effect max-w-4xl mx-auto p-8 rounded-lg text-center">
-          <p class="text-lg text-gray-800 leading-relaxed mb-8">
-            Som els <strong>Quintos 2006</strong> de l'Ametlla de Mar, un grup unit per la tradició i l'alegria de compartir moments únics. Organitzem esdeveniments que omplen de vida el nostre poble. <strong>Vine i forma part de la nostra història!</strong>
-          </p>
-          <img src="img/foto-quinta2006.JPG" alt="Foto dels Quintos 2006" class="w-full max-w-2xl mx-auto rounded-lg shadow-2xl">
+        <h2 class="section-title">Novetats</h2>
+        <div class="glass-effect reveal max-w-4xl mx-auto p-8">
+          <div class="text-center">
+            <img src="img/cartell-carnaval.jpg" alt="Carnaval 2026"
+                 class="w-full max-w-md mx-auto rounded-xl shadow-lg">
+            <h3 class="text-3xl font-bold text-gray-800 mt-7 mb-3">Carnaval 2026</h3>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6 text-gray-600 text-base">
+              <span><i class="fas fa-calendar-alt mr-1 text-red-500"></i>20 de febrer</span>
+              <span><i class="fas fa-clock mr-1 text-purple-500"></i>23:00 – 04:00 h</span>
+              <span><i class="fas fa-map-marker-alt mr-1 text-blue-500"></i>Sala SCER</span>
+            </div>
+            <p class="text-gray-700 text-base mb-7 max-w-lg mx-auto leading-relaxed">
+              Una nit plena de música, bon ambient i molta festa! Els Quintos 2006 us convidem a la primera festa de carnaval. 🎉
+            </p>
+            <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary">
+              <i class="fab fa-instagram mr-2"></i>Més informació
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CALENDARI -->
-    <section class="py-16">
+    <!-- ── COMPTE ENRERE ── -->
+    <section id="compte-enrere" class="py-16">
       <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-12 section-title">Calendari d'Actes</h2>
-        <div class="glass-effect max-w-5xl mx-auto p-6 rounded-lg bg-white">
+        <h2 class="section-title">Compte Enrere</h2>
+        <div class="glass-effect reveal max-w-4xl mx-auto p-10 text-center">
+          <p id="event-name" class="text-2xl font-bold text-gray-800 mb-1">—</p>
+          <p id="event-date" class="text-base text-gray-500 mb-9 tracking-wide"></p>
+          <div class="grid grid-cols-4 gap-4 max-w-sm mx-auto">
+            <div class="countdown-box"><span id="days"    class="countdown-number">0</span><div class="countdown-label">dies</div></div>
+            <div class="countdown-box"><span id="hours"   class="countdown-number">0</span><div class="countdown-label">hores</div></div>
+            <div class="countdown-box"><span id="minutes" class="countdown-number">0</span><div class="countdown-label">minuts</div></div>
+            <div class="countdown-box"><span id="seconds" class="countdown-number">0</span><div class="countdown-label">segons</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SOBRE NOSALTRES ── -->
+    <section id="sobre-nosaltres" class="py-16">
+      <div class="container mx-auto px-6">
+        <h2 class="section-title">Sobre Nosaltres</h2>
+        <div class="glass-effect reveal max-w-4xl mx-auto p-8 text-center">
+          <p class="text-lg text-gray-800 leading-relaxed mb-8 max-w-2xl mx-auto">
+            Som els <strong>Quintos 2006</strong> de l'Ametlla de Mar, un grup unit per la tradició
+            i l'alegria de compartir moments únics. Organitzem esdeveniments que omplen de vida
+            el nostre poble. <strong>Vine i forma part de la nostra història!</strong>
+          </p>
+          <img src="img/foto-quinta2006.JPG" alt="Foto dels Quintos 2006"
+               class="w-full max-w-2xl mx-auto rounded-xl shadow-2xl">
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CALENDARI ── -->
+    <section id="calendari" class="py-16">
+      <div class="container mx-auto px-6">
+        <h2 class="section-title">Calendari d'Actes</h2>
+        <div class="glass-effect reveal max-w-5xl mx-auto p-6">
           <div id="calendar"></div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACTE -->
-    <section class="py-16">
+    <!-- ── CONTACTE ── -->
+    <section id="contacte" class="py-16">
       <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-12 section-title">Contacta'ns</h2>
-        <div class="glass-effect max-w-3xl mx-auto p-8 rounded-lg text-center">
-          <p class="text-lg text-gray-800 mb-6">Segueix-nos a <strong>@quintos2006_</strong> per estar al dia!</p>
-          <a href="https://www.instagram.com/direct/t/quintos2006_" target="_blank" class="btn-primary text-lg">
-            <i class="fab fa-instagram mr-2"></i> Missatge Directe
-          </a>
+        <h2 class="section-title">Contacta'ns</h2>
+        <div class="glass-effect reveal max-w-3xl mx-auto p-8 text-center">
+          <p class="text-lg text-gray-700 mb-8">
+            Segueix-nos i escriu-nos, som a un clic!
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-xl mx-auto">
+            <a href="https://www.instagram.com/quintos2006_" target="_blank" class="contact-card">
+              <div class="contact-icon ig"><i class="fab fa-instagram"></i></div>
+              <span class="contact-label">Instagram</span>
+              <span class="contact-sub">@quintos2006_</span>
+            </a>
+            <a href="https://www.instagram.com/direct/t/quintos2006_" target="_blank" class="contact-card">
+              <div class="contact-icon ig"><i class="fas fa-paper-plane"></i></div>
+              <span class="contact-label">Missatge Directe</span>
+              <span class="contact-sub">Escriu-nos a l'Instagram</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
+
   </main>
 
-  <!-- FOOTER -->
-  <footer class="py-8">
-    <div class="footer-content container mx-auto px-6 text-center text-white">
-      <p class="text-xl font-semibold mb-4">Quintos 2006 - L'Ametlla de Mar</p>
-      <div class="flex justify-center space-x-6 mb-4">
-        <a href="https://www.instagram.com/quintos2006_" target="_blank" class="text-3xl hover:text-pink-400"><i class="fab fa-instagram"></i></a>
-        <a href="mailto:marc.program3@gmail.com" class="text-3xl hover:text-blue-400"><i class="fas fa-envelope"></i></a>
+  <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+  <footer class="py-10">
+    <div class="footer-content text-center text-white">
+      <p class="text-xl font-semibold mb-5 tracking-wide">Quintos 2006 &mdash; L'Ametlla de Mar</p>
+      <div class="footer-social flex justify-center space-x-4 mb-6">
+        <a href="https://www.instagram.com/quintos2006_" target="_blank" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="mailto:marc.program3@gmail.com" title="Correu electrònic">
+          <i class="fas fa-envelope"></i>
+        </a>
       </div>
-      <p class="text-sm">© 2025 - Desenvolupat amb <i class="fas fa-heart text-red-500"></i> per marc.program3@gmail.com</p>
+      <p class="text-sm opacity-70">
+        © 2025 – Desenvolupat amb <i class="fas fa-heart text-red-400"></i> per marc.program3@gmail.com
+      </p>
     </div>
   </footer>
 
-  <!-- MODALS -->
-  <div id="eventModal" class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 hidden overflow-y-auto">
-    <div class="modal-content relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 my-8">
-      <button class="absolute top-3 right-4 text-4xl text-white bg-black/50 rounded-full w-10 h-10 leading-none z-20 hover:bg-black/70" onclick="this.closest('#eventModal').classList.add('hidden')">&times;</button>
-      <img id="eventImage" class="modal-image w-full rounded-t-2xl" src="" alt="">
+  <!-- Botó scroll to top -->
+  <button id="scrollTopBtn" title="Torna a dalt"
+          onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ═══════════════════════════════ MODAL EVENTS ════════════════════════ -->
+  <div id="eventModal"
+       class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 hidden overflow-y-auto">
+    <div class="modal-content relative bg-white max-w-lg w-full mx-4 my-8">
+      <button class="absolute top-3 right-4 text-4xl text-white bg-black/50 rounded-full w-10 h-10
+                     leading-none z-20 hover:bg-black/70 transition-colors"
+              onclick="document.getElementById('eventModal').classList.add('hidden')">&times;</button>
+      <img id="eventImage" class="modal-image w-full" src="" alt="">
       <div class="p-6 md:p-8">
         <h2 id="eventTitle" class="text-2xl md:text-3xl font-bold mb-4 text-center"></h2>
         <div class="space-y-3 text-center">
-          <p class="text-lg"><i class="fas fa-calendar-day text-red-500 mr-2"></i><span id="eventDate" class="font-semibold"></span></p>
-          <p class="text-lg"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i><span id="eventLocation" class="font-semibold"></span></p>
-          <p class="text-lg"><i class="fas fa-clock text-purple-500 mr-2"></i><span id="eventTime" class="font-semibold"></span></p>
+          <p class="text-base"><i class="fas fa-calendar-day text-red-500 mr-2"></i><span id="eventDate"     class="font-semibold"></span></p>
+          <p class="text-base"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i><span id="eventLocation" class="font-semibold"></span></p>
+          <p class="text-base"><i class="fas fa-clock text-purple-500 mr-2"></i><span id="eventTime"     class="font-semibold"></span></p>
         </div>
-        <p id="eventDescription" class="text-gray-700 mt-6 text-center text-base md:text-lg"></p>
+        <p id="eventDescription"
+           class="text-gray-700 mt-6 text-center text-base leading-relaxed whitespace-pre-line"></p>
       </div>
     </div>
   </div>
 
-  <div id="infoModal" class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 hidden">
-    <div class="modal-content p-8 w-full max-w-md mx-4 bg-white rounded-lg">
-      <span class="close absolute top-4 right-4 text-2xl cursor-pointer" onclick="this.parentElement.parentElement.classList.add('hidden')">&times;</span>
+  <!-- ═══════════════════════════════ MODAL INFO ══════════════════════════ -->
+  <div id="infoModal"
+       class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 hidden">
+    <div class="modal-content p-8 w-full max-w-md mx-4 relative">
+      <button class="absolute top-4 right-5 text-2xl text-gray-400 hover:text-gray-700 transition-colors"
+              onclick="document.getElementById('infoModal').classList.add('hidden')">&times;</button>
       <h2 class="text-2xl font-bold mb-6 text-center">Informació</h2>
       <div class="space-y-3 text-gray-700">
         <p><strong>Objectiu:</strong> Web oficial dels Quintos 2006</p>
@@ -155,106 +217,134 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT -->
+  <!-- ═══════════════════════════════ JAVASCRIPT ══════════════════════════ -->
   <script>
+    /* ── Dades dels events ── */
     const events = [
-      { title: 'Castanyada', start: '2025-10-25', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
-      { title: 'Castanyada', start: '2025-10-26', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
-      { title: 'Castanyada', start: '2025-10-31', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
-      { title: 'Castanyada', start: '2025-11-01', image: 'img/cartell-castanyada.jpg', location: 'Plaça Nova i voltants', time: '17:30 - 20:30', description: 'Castanyada tradicional' },
-      { title: 'Presentació Hereus, Pubilles i Quintos', start: '2025-11-15', image: 'img/cartell-presentacio.jpg', location: 'Poliesportiu Municipal', time: '18:00', description: 'Presentació oficial' },
-      { title: 'Fira de Nadal', start: '2025-12-06', image: 'img/cartell-firanadal.jpg', location: 'Parc Bon Repòs', time: '11:00–14:00 i 17:00–20:00 h', description: 'Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d\'una cistella i ambient nadalenc!' },
-      { title: 'Fira de Nadal', start: '2025-12-07', image: 'img/cartell-firanadal.jpg', location: 'Parc Bon Repòs', time: '11:00–14:00 i 17:00–20:00 h', description: 'Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d\'una cistella i ambient nadalenc!' },
-      { title: 'Fira de Nadal', start: '2025-12-08', image: 'img/cartell-firanadal.jpg', location: 'Parc Bon Repòs', time: '11:00–14:00 i 17:00–20:00 h', description: 'Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d\'una cistella i ambient nadalenc!' },
-      { 
-        title: 'Correbars 2026', 
-        start: '2026-01-24', 
-        image: 'img/cartell-correbars.jpg', 
-        location: "Ajuntament de l'Ametlla de Mar", 
-        time: '17:00 h', 
-        description: "Aquest correbars no és només festa.\nÉs un homenatge a les nostres arrels i un gest de suport als pescadors, que avui pateixen dures mesures que posen en risc la seva feina i el futur del nostre poble. Defensar la pesca és defensar La Cala."
-      },
-      { 
-        title: 'Candelera', 
-        start: '2026-02-02', 
-        image: 'img/cartell-candelera.jpg', 
-        location: 'Església', 
-        time: '19:00 h', 
-        description: 'Solemne Processó en honor a la nostra patrona Mare de Déu de la Candelera. Portaran la imatge els Quintos i Quintes del 2006.'
-      }
+      { title:'Castanyada',  start:'2025-10-25', image:'img/cartell-castanyada.jpg',  location:'Plaça Nova i voltants',          time:'17:30 - 20:30',             description:'Castanyada tradicional' },
+      { title:'Castanyada',  start:'2025-10-26', image:'img/cartell-castanyada.jpg',  location:'Plaça Nova i voltants',          time:'17:30 - 20:30',             description:'Castanyada tradicional' },
+      { title:'Castanyada',  start:'2025-10-31', image:'img/cartell-castanyada.jpg',  location:'Plaça Nova i voltants',          time:'17:30 - 20:30',             description:'Castanyada tradicional' },
+      { title:'Castanyada',  start:'2025-11-01', image:'img/cartell-castanyada.jpg',  location:'Plaça Nova i voltants',          time:'17:30 - 20:30',             description:'Castanyada tradicional' },
+      { title:'Presentació Hereus, Pubilles i Quintos', start:'2025-11-15', image:'img/cartell-presentacio.jpg', location:'Poliesportiu Municipal', time:'18:00', description:'Presentació oficial' },
+      { title:'Fira de Nadal', start:'2025-12-06', image:'img/cartell-firanadal.jpg', location:'Parc Bon Repòs', time:"11:00–14:00 i 17:00–20:00 h", description:"Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d'una cistella i ambient nadalenc!" },
+      { title:'Fira de Nadal', start:'2025-12-07', image:'img/cartell-firanadal.jpg', location:'Parc Bon Repòs', time:"11:00–14:00 i 17:00–20:00 h", description:"Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d'una cistella i ambient nadalenc!" },
+      { title:'Fira de Nadal', start:'2025-12-08', image:'img/cartell-firanadal.jpg', location:'Parc Bon Repòs', time:"11:00–14:00 i 17:00–20:00 h", description:"Fira de Nadal Quintos 2006 – Tallers pels més petits, sorteig d'una cistella i ambient nadalenc!" },
+      { title:'Correbars 2026', start:'2026-01-24', image:'img/cartell-correbars.jpg', location:"Ajuntament de l'Ametlla de Mar", time:'17:00 h',
+        description:"Aquest correbars no és només festa.\nÉs un homenatge a les nostres arrels i un gest de suport als pescadors, que avui pateixen dures mesures que posen en risc la seva feina i el futur del nostre poble. Defensar la pesca és defensar La Cala." },
+      { title:'Candelera', start:'2026-02-02', image:'img/cartell-candelera.jpg', location:'Església', time:'19:00 h',
+        description:'Solemne Processó en honor a la nostra patrona Mare de Déu de la Candelera. Portaran la imatge els Quintos i Quintes del 2006.' },
+      { title:'Carnaval 2026', start:'2026-02-20', image:'img/cartell-carnaval.jpg', location:'Sala SCER', time:'23:00 – 04:00 h',
+        description:'Primera festa de carnaval. Una nit plena de música, bon ambient i molta festa!' }
     ];
 
+    /* ── Compte enrere amb animació flip ── */
+    function setFlip(id, value) {
+      const el = document.getElementById(id);
+      const str = String(value);
+      if (el.textContent !== str) {
+        el.textContent = str;
+        el.classList.remove('flip');
+        void el.offsetWidth;          // reflow per reiniciar l'animació
+        el.classList.add('flip');
+      }
+    }
+
+    function updateCountdown() {
+      const target = new Date('2026-02-02T19:00:00').getTime();
+      const now    = new Date().getTime();
+      const diff   = target - now;
+
+      if (diff <= 0) {
+        document.getElementById('event-name').textContent = 'Candelera en curs!';
+        document.getElementById('event-date').textContent = 'Ja està aquí!';
+        ['days','hours','minutes','seconds'].forEach(id => setFlip(id, '0'));
+        return;
+      }
+
+      document.getElementById('event-name').textContent = 'Processó de la Candelera';
+      document.getElementById('event-date').textContent = '2 de febrer · 19:00 h';
+      setFlip('days',    Math.floor(diff / 86400000));
+      setFlip('hours',   Math.floor((diff % 86400000) / 3600000));
+      setFlip('minutes', Math.floor((diff % 3600000)  / 60000));
+      setFlip('seconds', Math.floor((diff % 60000)    / 1000));
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-      // Compte enrere actiu fins a Candelera (2 febrer 19:00)
-function updateCountdown() {
-  const target = new Date('2026-02-02T19:00:00').getTime();
-  const now = new Date().getTime();
-  const diff = target - now;
 
-  if (diff <= 0) {
-    document.getElementById('event-name').textContent = 'Candelera en curs!';
-    document.getElementById('event-date').textContent = 'Ja està aquí!';
-    ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '0');
-    return;
-  }
+      /* ── Compte enrere ── */
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-  document.getElementById('event-name').textContent = 'Processó 2026';
-  document.getElementById('event-date').textContent = '2 de febrer - 19:00 h';
-  document.getElementById('days').textContent = days;
-  document.getElementById('hours').textContent = hours;
-  document.getElementById('minutes').textContent = minutes;
-  document.getElementById('seconds').textContent = seconds;
-}
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-      // Calendari
+      /* ── FullCalendar ── */
       const calendarEl = document.getElementById('calendar');
       if (calendarEl) {
-        const calendar = new FullCalendar.Calendar(calendarEl, {
+        const cal = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth',
           initialDate: '2026-01-01',
           locale: 'ca',
-          headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth' },
-          events: events,
-          eventClick: function(info) {
-            document.getElementById('eventTitle').textContent = info.event.title;
-            document.getElementById('eventDate').textContent = info.event.start.toLocaleDateString('ca-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-            document.getElementById('eventLocation').textContent = info.event.extendedProps.location || '';
-            document.getElementById('eventTime').textContent = info.event.extendedProps.time || '';
+          headerToolbar: { left:'prev,next today', center:'title', right:'dayGridMonth' },
+          events,
+          eventClick(info) {
+            document.getElementById('eventTitle').textContent       = info.event.title;
+            document.getElementById('eventDate').textContent        = info.event.start.toLocaleDateString('ca-ES',{ weekday:'long', day:'numeric', month:'long', year:'numeric' });
+            document.getElementById('eventLocation').textContent    = info.event.extendedProps.location    || '';
+            document.getElementById('eventTime').textContent        = info.event.extendedProps.time        || '';
             document.getElementById('eventDescription').textContent = info.event.extendedProps.description || '';
-            document.getElementById('eventImage').src = info.event.extendedProps.image;
+            document.getElementById('eventImage').src               = info.event.extendedProps.image;
             document.getElementById('eventModal').classList.remove('hidden');
           },
-          eventContent: function(info) {
-            return {
-              html: `<div class="flex items-center space-x-2">
-                <img src="${info.event.extendedProps.image}" class="w-8 h-8 rounded object-cover">
-                <span class="font-medium text-xs">${info.event.title}</span>
-              </div>`
-            };
+          eventContent(info) {
+            return { html:`<div style="display:flex;align-items:center;gap:6px;padding:2px 6px 2px 0;overflow:hidden;max-width:100%;width:100%;">
+              <img src="${info.event.extendedProps.image}"
+                   style="width:22px;height:22px;border-radius:4px;object-fit:cover;flex-shrink:0;">
+              <span style="font-size:0.71rem;font-weight:600;color:#222;white-space:nowrap;
+                           overflow:hidden;text-overflow:ellipsis;line-height:1.3;">
+                ${info.event.title}
+              </span>
+            </div>` };
           }
         });
-        calendar.render();
+        cal.render();
       }
 
-      // Modal info primera vegada
+      /* ── Modal info primera vegada ── */
       if (!sessionStorage.getItem('infoShown')) {
-        const modal = document.getElementById('infoModal');
-        if (modal) modal.classList.remove('hidden');
+        document.getElementById('infoModal').classList.remove('hidden');
         sessionStorage.setItem('infoShown', 'true');
       }
+
+      /* ── Animacions reveal en scroll ── */
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.10 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      /* ── Botó scroll to top ── */
+      const btn = document.getElementById('scrollTopBtn');
+      window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 400));
+
+      /* ── Nav link actiu per secció ── */
+      const navObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+            if (a) a.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' });
+      document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
     });
 
-    // Tancar modals clicant fora
-    window.onclick = e => {
+    /* ── Tancar modals clicant fora ── */
+    window.addEventListener('click', e => {
       if (e.target.classList.contains('fixed')) e.target.classList.add('hidden');
-    };
+    });
   </script>
 </body>
 </html>

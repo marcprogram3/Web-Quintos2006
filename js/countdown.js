@@ -1,36 +1,37 @@
-function getNextEvent() {
-  const now = new Date();
-  let next = null;
-  let minDiff = Infinity;
-  events.forEach(e => {
-    const d = new Date(e.date);
-    if (d > now && (d - now) < minDiff) {
-      minDiff = d - now;
-      next = e;
-    }
-  });
-  return next || events[0];
-}
-
+// Compte enrere actiu fins a Carnaval 20/02/2026 23:00
 function updateCountdown() {
-  const e = getNextEvent();
-  const target = new Date(e.date).getTime();
+  const target = new Date('2026-02-20T23:00:00').getTime();
   const now = new Date().getTime();
   const diff = target - now;
-  if (diff <= 0) { updateCountdown(); return; }
 
-  const days = Math.floor(diff / 86400000);
-  const hours = Math.floor((diff % 86400000) / 3600000);
+  const daysEl    = document.getElementById('days');
+  const hoursEl   = document.getElementById('hours');
+  const minutesEl = document.getElementById('minutes');
+  const secondsEl = document.getElementById('seconds');
+  const nameEl    = document.getElementById('event-name');
+  const dateEl    = document.getElementById('event-date');
+
+  if (!daysEl || !nameEl) return; // si els elements no existeixen, surt
+
+  if (diff <= 0) {
+    nameEl.textContent = 'Carnaval en curs!';
+    dateEl.textContent = 'Ja està aquí!';
+    daysEl.textContent = hoursEl.textContent = minutesEl.textContent = secondsEl.textContent = '0';
+    return;
+  }
+
+  const days    = Math.floor(diff / 86400000);
+  const hours   = Math.floor((diff % 86400000) / 3600000);
   const minutes = Math.floor((diff % 3600000) / 60000);
   const seconds = Math.floor((diff % 60000) / 1000);
 
-  document.getElementById('event-name').textContent = e.title;
-  document.getElementById('event-date').textContent = 
-    `${new Date(e.date).toLocaleDateString('ca-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} – ${new Date(e.date).toLocaleTimeString('ca-ES', { hour: '2-digit', minute: '2-digit' })}`;
-  document.getElementById('days').textContent = days;
-  document.getElementById('hours').textContent = hours;
-  document.getElementById('minutes').textContent = minutes;
-  document.getElementById('seconds').textContent = seconds;
+  nameEl.textContent = 'Carnaval';
+  dateEl.textContent = '20 de febrer – 23:00 h';
+  daysEl.textContent    = days;
+  hoursEl.textContent   = hours;
+  minutesEl.textContent = minutes;
+  secondsEl.textContent = seconds;
 }
+
 updateCountdown();
 setInterval(updateCountdown, 1000);
