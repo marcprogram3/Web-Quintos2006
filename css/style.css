@@ -922,11 +922,16 @@ footer::before {
 @media (max-width: 640px) {
 
   /* ── Header ── */
-  header .container { padding: 0.85rem 0.75rem 0.65rem; }
+  header .container { padding: 0.75rem 0.875rem 0.6rem; }
 
-  .header-logo { max-width: 100%; }
-  .header-escut img { width: 2.8rem; }
-  .info-icon  { width: 36px; height: 36px; font-size: 0.85rem; }
+  .header-row { gap: 0.4rem; }
+  .header-logo {
+    max-width: calc(100% - 100px);
+    flex-shrink: 1;
+  }
+  .header-escut { min-width: 38px; }
+  .header-escut img { width: 2.4rem !important; }
+  .info-icon  { flex-shrink: 0; width: 36px; height: 36px; font-size: 0.85rem; }
   .header-tagline { font-size: 0.66rem; letter-spacing: 1px; margin-top: 0.4rem; }
   .escut-text { display: none; }
 
