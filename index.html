@@ -67,16 +67,16 @@
         <h2 class="section-title">Novetats</h2>
         <div class="glass-effect reveal max-w-4xl mx-auto p-8">
           <div class="text-center">
-            <img src="img/cartell-carnaval.jpg" alt="Carnaval 2026"
+            <img src="img/cartell-correllengua.jpg" alt="Correllengua 2026 – Sant Jordi"
                  class="w-full max-w-md mx-auto rounded-xl shadow-lg">
-            <h3 class="text-3xl font-bold text-gray-800 mt-7 mb-3">Carnaval 2026</h3>
+            <h3 class="text-3xl font-bold text-gray-800 mt-7 mb-3">Correllengua – Diada de Sant Jordi 🌹</h3>
             <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6 text-gray-600 text-base">
-              <span><i class="fas fa-calendar-alt mr-1 text-red-500"></i>20 de febrer</span>
-              <span><i class="fas fa-clock mr-1 text-purple-500"></i>23:00 – 04:00 h</span>
-              <span><i class="fas fa-map-marker-alt mr-1 text-blue-500"></i>Sala SCER</span>
+              <span><i class="fas fa-calendar-alt mr-1 text-red-500"></i>23 d'abril</span>
+              <span><i class="fas fa-clock mr-1 text-purple-500"></i>16:00 – 20:00 h</span>
+              <span><i class="fas fa-map-marker-alt mr-1 text-blue-500"></i>Parc del Bon Repòs</span>
             </div>
             <p class="text-gray-700 text-base mb-7 max-w-lg mx-auto leading-relaxed">
-              Una nit plena de música, bon ambient i molta festa! Els Quintos 2006 us convidem a la primera festa de carnaval. 🎉
+              El proper 23 d'abril, Diada de Sant Jordi 🌹, rebrem la flama del @correllengua_ a la Cala. 🏃‍♂️🔥 Les entitats culturals caleres us conviden a una jornada plena de música i cultura per la llengua! 💗
             </p>
             <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary">
               <i class="fab fa-instagram mr-2"></i>Més informació
@@ -232,7 +232,9 @@
       { title:'Candelera', start:'2026-02-02', image:'img/cartell-candelera.jpg', location:'Església', time:'19:00 h',
         description:'Solemne Processó en honor a la nostra patrona Mare de Déu de la Candelera. Portaran la imatge els Quintos i Quintes del 2006.' },
       { title:'Carnaval 2026', start:'2026-02-20', image:'img/cartell-carnaval.jpg', location:'Sala SCER', time:'23:00 – 04:00 h',
-        description:'Primera festa de carnaval. Una nit plena de música, bon ambient i molta festa!' }
+        description:'Primera festa de carnaval. Una nit plena de música, bon ambient i molta festa!' },
+      { title:'Correllengua – Sant Jordi', start:'2026-04-23', image:'img/cartell-correllengua.jpg', location:'Parc del Bon Repòs', time:'16:00 – 20:00 h',
+        description:"El proper 23 d'abril, Diada de Sant Jordi 🌹, rebrem la flama del @correllengua_ a la Cala. 🏃‍♂️🔥\n\nDegut a aquest fet tan excepcional, les entitats culturals caleres, conjuntament amb l'organització local del Correllengua, hem organitzat una jornada plena de música i cultura. ✨🎭🎶🎬\n\nUs convidem a gaudir d'aquesta festa per la llengua 💗 amb tots nosaltres al 📍 Parc del Bon Repòs, a partir de les 16:00 h i fins a les 20:00 h.\n\nLa llengua ets tu i som tots!!!\n\n#correllenguaagermanat #llenguacatalana #cultura #musica #festesametllademar" }
     ];
 
     /* ── Compte enrere amb animació flip ── */
@@ -248,19 +250,19 @@
     }
 
     function updateCountdown() {
-      const target = new Date('2026-02-02T19:00:00').getTime();
+      const target = new Date('2026-04-23T16:00:00').getTime();
       const now    = new Date().getTime();
       const diff   = target - now;
 
       if (diff <= 0) {
-        document.getElementById('event-name').textContent = 'Candelera en curs!';
+        document.getElementById('event-name').textContent = 'Correllengua en curs! 🔥';
         document.getElementById('event-date').textContent = 'Ja està aquí!';
         ['days','hours','minutes','seconds'].forEach(id => setFlip(id, '0'));
         return;
       }
 
-      document.getElementById('event-name').textContent = 'Processó de la Candelera';
-      document.getElementById('event-date').textContent = '2 de febrer · 19:00 h';
+      document.getElementById('event-name').textContent = 'Correllengua – Diada de Sant Jordi 🌹';
+      document.getElementById('event-date').textContent = '23 d\'abril · 16:00 h · Parc del Bon Repòs';
       setFlip('days',    Math.floor(diff / 86400000));
       setFlip('hours',   Math.floor((diff % 86400000) / 3600000));
       setFlip('minutes', Math.floor((diff % 3600000)  / 60000));
@@ -278,7 +280,7 @@
       if (calendarEl) {
         const cal = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth',
-          initialDate: '2026-01-01',
+          initialDate: new Date().toISOString().slice(0, 10),
           locale: 'ca',
           headerToolbar: { left:'prev,next today', center:'title', right:'dayGridMonth' },
           events,
