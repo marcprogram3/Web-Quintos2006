@@ -242,6 +242,7 @@ section::before {
 #novetats::before        { background: var(--primary);  top: -100px; left: -150px; }
 #compte-enrere::before   { background: var(--gold);     top: -80px;  right: -150px; }
 #sobre-nosaltres::before { background: var(--primary);  top: -80px;  right: -100px; }
+#album::before           { background: var(--gold);     top: -80px;  left: -150px; }
 #calendari::before       { background: var(--gold);     top: -100px; left: -150px; }
 #contacte::before        { background: var(--primary);  top: -60px;  left: 50%; transform: translateX(-50%); }
 
@@ -908,6 +909,291 @@ footer::before {
 }
 
 /* =============================================
+   NOVETATS — CARRUSEL
+   ============================================= */
+.novetats-slider {
+  display: grid;
+}
+
+.novetat-card {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transition: opacity 0.65s ease;
+  pointer-events: none;
+  text-align: center;
+}
+
+.novetat-card.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.novetat-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(220,53,69,0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s var(--ease);
+}
+
+.novetat-dot.active {
+  background: var(--primary);
+  transform: scale(1.4);
+  box-shadow: 0 0 8px rgba(220,53,69,0.5);
+}
+
+/* =============================================
+   ÀLBUM — FLIP BOOK
+   ============================================= */
+.book-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.book-scene {
+  perspective: 3000px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#book {
+  width: min(800px, 100%);
+  aspect-ratio: 8 / 5;
+  position: relative;
+  display: flex;
+  filter: drop-shadow(0 24px 55px rgba(0,0,0,0.55));
+}
+
+/* ── Pàgines estàtiques ── */
+.book-page {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.book-page-left {
+  border-radius: 12px 0 0 12px;
+  background: linear-gradient(to right, #ecdfc0 0%, #fdf7e8 10%);
+}
+
+.book-page-right {
+  border-radius: 0 12px 12px 0;
+  background: linear-gradient(to left, #ecdfc0 0%, #fdf7e8 10%);
+}
+
+/* ── Llomera ── */
+.book-spine {
+  width: 2.5%;
+  flex-shrink: 0;
+  background: linear-gradient(
+    to right,
+    #1a0800 0%, #6b3010 30%,
+    #9b5020 50%,
+    #6b3010 70%, #1a0800 100%
+  );
+  box-shadow: inset 1px 0 4px rgba(255,255,255,0.08), inset -1px 0 4px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 10;
+}
+
+/* ── Contingut interior ── */
+.book-page-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.book-photo-area {
+  flex: 1;
+  min-height: 0;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.22);
+}
+
+.book-photo-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.book-photo-icon {
+  font-size: 2.2rem;
+  color: rgba(255,255,255,0.55);
+  pointer-events: none;
+}
+
+.book-photo-num {
+  font-family: 'Barlow', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.12);
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+  line-height: 1;
+  user-select: none;
+}
+
+.book-photo-info {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.book-photo-event {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #3a2010;
+}
+
+.book-photo-date {
+  font-size: 0.65rem;
+  color: #8a6a40;
+  font-style: italic;
+}
+
+.page-num {
+  position: absolute;
+  bottom: 2%;
+  font-size: 0.62rem;
+  color: #a08050;
+  font-style: italic;
+}
+.page-num-left  { left: 5%; }
+.page-num-right { right: 5%; }
+
+/* ── Flap (pàgina que gira) ── */
+.book-flap {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: none;
+  transform-style: preserve-3d;
+  z-index: 20;
+}
+
+.book-flap-right {
+  left: calc(50% + 1.25%);
+  width: calc(50% - 1.25%);
+  transform-origin: left center;
+}
+
+.book-flap-left {
+  left: 0;
+  width: calc(50% - 1.25%);
+  transform-origin: right center;
+}
+
+.book-flap-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.book-flap-right .book-flap-front {
+  border-radius: 0 12px 12px 0;
+  background: linear-gradient(to left, #ecdfc0 0%, #fdf7e8 10%);
+}
+.book-flap-right .book-flap-back {
+  transform: rotateY(180deg);
+  border-radius: 12px 0 0 12px;
+  background: linear-gradient(to right, #ecdfc0 0%, #fdf7e8 10%);
+}
+
+.book-flap-left .book-flap-front {
+  border-radius: 12px 0 0 12px;
+  background: linear-gradient(to right, #ecdfc0 0%, #fdf7e8 10%);
+}
+.book-flap-left .book-flap-back {
+  transform: rotateY(180deg);
+  border-radius: 0 12px 12px 0;
+  background: linear-gradient(to left, #ecdfc0 0%, #fdf7e8 10%);
+}
+
+/* ── Botons de control ── */
+.book-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.book-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(220,53,69,0.40);
+  transition: all 0.28s var(--ease);
+}
+
+.book-btn:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 12px 30px rgba(220,53,69,0.55);
+}
+
+.book-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.book-indicator {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.88);
+  letter-spacing: 0.4px;
+  min-width: 160px;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+/* Pàgina buida (nombre imparell de fotos) */
+.book-empty-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d4c8a8;
+  font-size: 2rem;
+}
+
+/* =============================================
    RESPONSIVE — TABLETS
    ============================================= */
 @media (max-width: 768px) {
@@ -982,4 +1268,13 @@ footer::before {
   }
 
   #scrollTopBtn { bottom: 1.2rem; right: 1.2rem; width: 44px; height: 44px; font-size: 1rem; }
+
+  /* ── Flip book ── */
+  .book-btn { width: 42px; height: 42px; font-size: 0.88rem; }
+  .book-indicator { font-size: 0.72rem; min-width: 110px; }
+  .book-photo-icon { font-size: 1.2rem; }
+  .book-photo-num  { font-size: 2rem; }
+  .book-photo-event { font-size: 0.58rem; }
+  .book-photo-date  { font-size: 0.50rem; }
+  .page-num { display: none; }
 }

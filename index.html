@@ -66,22 +66,8 @@
       <div class="container mx-auto px-6">
         <h2 class="section-title">Novetats</h2>
         <div class="glass-effect reveal max-w-4xl mx-auto p-8">
-          <div class="text-center">
-            <img src="img/cartell-correllengua.jpg" alt="Correllengua 2026 – Sant Jordi"
-                 class="w-full max-w-md mx-auto rounded-xl shadow-lg">
-            <h3 class="text-3xl font-bold text-gray-800 mt-7 mb-3">Correllengua – Diada de Sant Jordi 🌹</h3>
-            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6 text-gray-600 text-base">
-              <span><i class="fas fa-calendar-alt mr-1 text-red-500"></i>23 d'abril</span>
-              <span><i class="fas fa-clock mr-1 text-purple-500"></i>16:00 – 20:00 h</span>
-              <span><i class="fas fa-map-marker-alt mr-1 text-blue-500"></i>Parc del Bon Repòs</span>
-            </div>
-            <p class="text-gray-700 text-base mb-7 max-w-lg mx-auto leading-relaxed">
-              El proper 23 d'abril, Diada de Sant Jordi 🌹, rebrem la flama del @correllengua_ a la Cala. 🏃‍♂️🔥 Les entitats culturals caleres us conviden a una jornada plena de música i cultura per la llengua! 💗
-            </p>
-            <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary">
-              <i class="fab fa-instagram mr-2"></i>Més informació
-            </a>
-          </div>
+          <div id="novetats-slider" class="novetats-slider"></div>
+          <div id="novetats-dots" class="flex justify-center gap-3 mt-6"></div>
         </div>
       </div>
     </section>
@@ -217,6 +203,66 @@
 
   <!-- ═══════════════════════════════ JAVASCRIPT ══════════════════════════ -->
   <script>
+    /* ── Novetats carrusel ── */
+    const novetats = [
+      {
+        img:      'img/cartell-correllengua.jpg',
+        alt:      'Correllengua – Sant Jordi',
+        title:    'Correllengua \u2013 Diada de Sant Jordi \uD83C\uDF39',
+        date:     "23 d'abril",
+        time:     '16:00 \u2013 20:00 h',
+        location: 'Parc del Bon Rep\u00f2s',
+        desc:     "El proper 23 d'abril, Diada de Sant Jordi \uD83C\uDF39, rebrem la flama del @correllengua_ a la Cala. \uD83C\uDFC3\u200d\u2642\uFE0F\uD83D\uDD25 Les entitats culturals caleres us conviden a una jornada plena de m\u00fasica i cultura per la llengua! \uD83D\uDC97"
+      },
+      {
+        img:      'img/cartell-passaparaula.jpg',
+        alt:      'Passaparaula',
+        title:    "Passaparaula \u2013 23 d'abril",
+        date:     "23 d'abril",
+        time:     'Tarda',
+        location: 'Parc del Bon Rep\u00f2s',
+        desc:     "Els Quintos t'animem a participar a la nostra activitat del passaparaula la tarda del 23 d'abril al parc del Bon Rep\u00f2s, per posar a prova el teu catal\u00e0. Els guanyadors podran gaudir de diversos premis (limitats)."
+      }
+    ];
+
+    let novetatsIdx   = 0;
+    let novetatsTimer = null;
+
+    function initNovetats() {
+      const slider = document.getElementById('novetats-slider');
+      const dotsEl = document.getElementById('novetats-dots');
+      if (!slider) return;
+
+      slider.innerHTML = novetats.map((n, i) => `
+        <div class="novetat-card${i === 0 ? ' active' : ''}">
+          <img src="${n.img}" alt="${n.alt}" class="w-full max-w-md mx-auto rounded-xl shadow-lg">
+          <h3 class="text-3xl font-bold text-gray-800 mt-7 mb-3">${n.title}</h3>
+          <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6 text-gray-600 text-base">
+            <span><i class="fas fa-calendar-alt mr-1 text-red-500"></i>${n.date}</span>
+            <span><i class="fas fa-clock mr-1 text-purple-500"></i>${n.time}</span>
+            <span><i class="fas fa-map-marker-alt mr-1 text-blue-500"></i>${n.location}</span>
+          </div>
+          <p class="text-gray-700 text-base mb-7 max-w-lg mx-auto leading-relaxed">${n.desc}</p>
+          <a href="https://www.instagram.com/quintos2006_" target="_blank" class="btn-primary">
+            <i class="fab fa-instagram mr-2"></i>M\u00e9s informaci\u00f3
+          </a>
+        </div>`).join('');
+
+      dotsEl.innerHTML = novetats.map((_, i) => `
+        <button class="novetat-dot${i === 0 ? ' active' : ''}" onclick="goNovetat(${i})"></button>
+      `).join('');
+
+      novetatsTimer = setInterval(() => goNovetat((novetatsIdx + 1) % novetats.length), 5000);
+    }
+
+    function goNovetat(idx) {
+      novetatsIdx = idx;
+      document.querySelectorAll('.novetat-card').forEach((c, i) => c.classList.toggle('active', i === idx));
+      document.querySelectorAll('.novetat-dot').forEach((d, i)  => d.classList.toggle('active', i === idx));
+      clearInterval(novetatsTimer);
+      novetatsTimer = setInterval(() => goNovetat((novetatsIdx + 1) % novetats.length), 5000);
+    }
+
     /* ── Dades dels events ── */
     const events = [
       { title:'Castanyada',  start:'2025-10-25', image:'img/cartell-castanyada.jpg',  location:'Plaça Nova i voltants',          time:'17:30 - 20:30',             description:'Castanyada tradicional' },
@@ -234,7 +280,9 @@
       { title:'Carnaval 2026', start:'2026-02-20', image:'img/cartell-carnaval.jpg', location:'Sala SCER', time:'23:00 – 04:00 h',
         description:'Primera festa de carnaval. Una nit plena de música, bon ambient i molta festa!' },
       { title:'Correllengua – Sant Jordi', start:'2026-04-23', image:'img/cartell-correllengua.jpg', location:'Parc del Bon Repòs', time:'16:00 – 20:00 h',
-        description:"El proper 23 d'abril, Diada de Sant Jordi 🌹, rebrem la flama del @correllengua_ a la Cala. 🏃‍♂️🔥\n\nDegut a aquest fet tan excepcional, les entitats culturals caleres, conjuntament amb l'organització local del Correllengua, hem organitzat una jornada plena de música i cultura. ✨🎭🎶🎬\n\nUs convidem a gaudir d'aquesta festa per la llengua 💗 amb tots nosaltres al 📍 Parc del Bon Repòs, a partir de les 16:00 h i fins a les 20:00 h.\n\nLa llengua ets tu i som tots!!!\n\n#correllenguaagermanat #llenguacatalana #cultura #musica #festesametllademar" }
+        description:"El proper 23 d'abril, Diada de Sant Jordi 🌹, rebrem la flama del @correllengua_ a la Cala. 🏃‍♂️🔥\n\nDegut a aquest fet tan excepcional, les entitats culturals caleres, conjuntament amb l'organització local del Correllengua, hem organitzat una jornada plena de música i cultura. ✨🎭🎶🎬\n\nUs convidem a gaudir d'aquesta festa per la llengua 💗 amb tots nosaltres al 📍 Parc del Bon Repòs, a partir de les 16:00 h i fins a les 20:00 h.\n\nLa llengua ets tu i som tots!!!\n\n#correllenguaagermanat #llenguacatalana #cultura #musica #festesametllademar" },
+      { title:'Passaparaula', start:'2026-04-23', image:'img/cartell-passaparaula.jpg', location:'Parc del Bon Repòs', time:'Tarda',
+        description:"Els Quintos t'animem a participar a la nostra activitat del passaparaula la tarda del 23 d'abril al parc del Bon Repòs. A més, els guanyadors podran gaudir de diversos premis (limitats). Vine i posa a prova el teu català!" }
     ];
 
     /* ── Compte enrere amb animació flip ── */
@@ -270,6 +318,9 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+
+      /* ── Novetats ── */
+      initNovetats();
 
       /* ── Compte enrere ── */
       updateCountdown();
