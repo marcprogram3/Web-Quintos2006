@@ -53,6 +53,7 @@
       <a href="#novetats"        class="nav-link"><i class="fas fa-star"></i>Novetats</a>
       <a href="#compte-enrere"   class="nav-link"><i class="fas fa-hourglass-half"></i>Compte enrere</a>
       <a href="#sobre-nosaltres" class="nav-link"><i class="fas fa-users"></i>Nosaltres</a>
+      <a href="#album"           class="nav-link"><i class="fas fa-images"></i>Àlbum</a>
       <a href="#calendari"       class="nav-link"><i class="fas fa-calendar-alt"></i>Calendari</a>
       <a href="#contacte"        class="nav-link"><i class="fas fa-envelope"></i>Contacte</a>
     </div>
@@ -101,6 +102,54 @@
           </p>
           <img src="img/foto-quinta2006.JPG" alt="Foto dels Quintos 2006"
                class="w-full max-w-2xl mx-auto rounded-xl shadow-2xl">
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ÀLBUM DE FOTOS ── -->
+    <section id="album" class="py-16">
+      <div class="container mx-auto px-6">
+        <h2 class="section-title">Àlbum de Fotos</h2>
+        <div class="book-wrapper reveal">
+
+          <div class="book-scene">
+            <div id="book">
+
+              <div class="book-page book-page-left">
+                <div class="book-page-inner" id="book-left-inner"></div>
+                <span class="page-num page-num-left" id="page-num-left"></span>
+              </div>
+
+              <div class="book-spine"></div>
+
+              <div class="book-page book-page-right">
+                <div class="book-page-inner" id="book-right-inner"></div>
+                <span class="page-num page-num-right" id="page-num-right"></span>
+              </div>
+
+              <div class="book-flap book-flap-right" id="flap-right">
+                <div class="book-flap-face book-flap-front" id="flap-right-front"></div>
+                <div class="book-flap-face book-flap-back"  id="flap-right-back"></div>
+              </div>
+
+              <div class="book-flap book-flap-left" id="flap-left">
+                <div class="book-flap-face book-flap-front" id="flap-left-front"></div>
+                <div class="book-flap-face book-flap-back"  id="flap-left-back"></div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="book-controls">
+            <button class="book-btn" id="btn-book-prev" disabled onclick="bookPrev()">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <span class="book-indicator" id="book-indicator"></span>
+            <button class="book-btn" id="btn-book-next" onclick="bookNext()">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+
         </div>
       </div>
     </section>
@@ -231,6 +280,21 @@
         time:     'Tot el dia',
         location: 'Castell de Sant Jordi',
         desc:     ''
+      },
+      {
+        img:      'img/cartell-batucada.jpg',
+        alt:      'Batucada',
+        title:    'Trobada de Batucades 🥁',
+        date:     '16 de maig',
+        time:     '18:00 – 21:00 h',
+        location: 'Parc del Bon Repòs',
+        desc:     '🥁 Aquest dissabte 16 de maig us esperem a la Trobada de Batucades al Parc del Bon Repòs!
+
+Durant tot l'acte tindrem servei de barra 🍻 perquè no falti de res mentre gaudim del ritme i l'ambient 🔥
+
+I a partir de les 18 h… continuem la festa amb un tardeo a càrrec de DJ Nex 🎧
+
+Vine a xalar amb nosaltres!'
       }
     ];
 
@@ -272,6 +336,195 @@
       novetatsTimer = setInterval(() => goNovetat((novetatsIdx + 1) % novetats.length), 5000);
     }
 
+    /* ── Àlbum de fotos (flip book) ── */
+
+    // Color de fons per a cada capítol (mentre no hi ha foto real)
+    const chapterColors = {
+      'castanyada':   ['linear-gradient(135deg,#b05828,#7a3a14)','linear-gradient(135deg,#c46030,#8a4018)','linear-gradient(135deg,#a04820,#703010)'],
+      'presentacio':  ['linear-gradient(135deg,#c8a030,#8a6c10)','linear-gradient(135deg,#d4ac40,#9a7820)'],
+      'fira-nadal':   ['linear-gradient(135deg,#be1820,#701010)','linear-gradient(135deg,#d02830,#801818)'],
+      'correbars':    ['linear-gradient(135deg,#1a3a6a,#0d1e3a)','linear-gradient(135deg,#1e4480,#0a1c40)'],
+      'candelera':    ['linear-gradient(135deg,#6a3a8a,#3a1a5a)','linear-gradient(135deg,#7a4a9a,#4a2a6a)'],
+      'carnaval':     ['linear-gradient(135deg,#8a1a8a,#5a0a5a)','linear-gradient(135deg,#9a2060,#5a1030)','linear-gradient(135deg,#703080,#401060)'],
+      'correllengua': ['linear-gradient(135deg,#dc3545,#f4c430)','linear-gradient(135deg,#e04050,#f0c020)','linear-gradient(135deg,#c82030,#dbb020)'],
+      'sant-jordi':   ['linear-gradient(135deg,#c8a030,#dc3545)','linear-gradient(135deg,#d4ac40,#e04050)'],
+    };
+
+    let albumPhotos  = [];
+    let bookSpread   = 0;
+    let bookFlipping = false;
+
+    async function loadAlbum() {
+      try {
+        const res = await fetch('album/manifest.json');
+        if (res.ok) {
+          const manifest = await res.json();
+          albumPhotos = [];
+          for (const ch of manifest.chapters) {
+            const colors = chapterColors[ch.folder] || ['linear-gradient(135deg,#555,#333)'];
+            ch.photos.forEach((src, i) => {
+              albumPhotos.push({
+                event: ch.event,
+                date:  ch.date,
+                color: colors[i % colors.length],
+                src,
+              });
+            });
+          }
+        }
+      } catch(_) {}
+
+      // Si el manifest és buit o no s'ha carregat, mostra placeholders
+      if (albumPhotos.length === 0) {
+        const placeholders = [
+          { folder:'castanyada',   event:'Castanyada',    date:'Octubre 2025',  n:3 },
+          { folder:'presentacio',  event:'Presentació',   date:'Novembre 2025', n:2 },
+          { folder:'fira-nadal',   event:'Fira de Nadal', date:'Desembre 2025', n:2 },
+          { folder:'correbars',    event:'Correbars',     date:'Gener 2026',    n:2 },
+          { folder:'candelera',    event:'Candelera',     date:'Febrer 2026',   n:2 },
+          { folder:'carnaval',     event:'Carnaval',      date:'Febrer 2026',   n:3 },
+          { folder:'correllengua', event:'Correllengua',  date:'Abril 2026',    n:4 },
+          { folder:'sant-jordi',   event:'Sant Jordi',    date:'Abril 2026',    n:2 },
+        ];
+        for (const p of placeholders) {
+          const colors = chapterColors[p.folder] || ['linear-gradient(135deg,#555,#333)'];
+          for (let i = 0; i < p.n; i++) {
+            albumPhotos.push({ event: p.event, date: p.date, color: colors[i % colors.length] });
+          }
+        }
+      }
+
+      initBook();
+    }
+
+    async function downloadPhoto(idx) {
+      const p = albumPhotos[idx];
+      if (!p.src) return;
+      try {
+        const res  = await fetch(p.src);
+        const blob = await res.blob();
+        const url  = URL.createObjectURL(blob);
+        const a    = document.createElement('a');
+        a.href     = url;
+        a.download = `quintos2006_${p.event.toLowerCase().replace(/\s+/g,'-')}_${String(idx+1).padStart(2,'0')}.jpg`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      } catch(e) {
+        console.error('Error descarregant la foto:', e);
+      }
+    }
+
+    function renderBookPage(container, idx) {
+      if (!container) return;
+      if (idx < 0 || idx >= albumPhotos.length) {
+        container.innerHTML = '<div class="book-empty-page"><i class="fas fa-book-open"></i></div>';
+        return;
+      }
+      const p      = albumPhotos[idx];
+      const num    = String(idx + 1).padStart(2, '0');
+      const hasSrc = !!p.src;
+      const inner  = hasSrc
+        ? `<img src="${p.src}" alt="${p.event}" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">`
+        : `<i class="fas fa-camera book-photo-icon"></i><span class="book-photo-num">${num}</span>`;
+      container.innerHTML = `
+        <div class="book-photo-area" style="background:${p.color}">
+          ${inner}
+          <button class="book-download-btn" onclick="downloadPhoto(${idx})" title="Descarregar foto"
+                  ${hasSrc ? '' : 'disabled'}>
+            <i class="fas fa-download"></i>
+          </button>
+        </div>
+        <div class="book-photo-info">
+          <div class="book-photo-event">${p.event}</div>
+          <div class="book-photo-date">${p.date}</div>
+        </div>`;
+    }
+
+    function updateBookUI() {
+      const prev = document.getElementById('btn-book-prev');
+      const next = document.getElementById('btn-book-next');
+      const ind  = document.getElementById('book-indicator');
+      if (prev) prev.disabled = bookSpread === 0;
+      if (next) next.disabled = bookSpread === Math.ceil(albumPhotos.length / 2) - 1;
+      if (ind) {
+        const from = bookSpread * 2 + 1;
+        const to   = Math.min(bookSpread * 2 + 2, albumPhotos.length);
+        ind.textContent = `Foto ${from}–${to} de ${albumPhotos.length}`;
+      }
+    }
+
+    function initBook() {
+      renderBookPage(document.getElementById('book-left-inner'),  0);
+      renderBookPage(document.getElementById('book-right-inner'), 1);
+      document.getElementById('page-num-left').textContent  = '1';
+      document.getElementById('page-num-right').textContent = '2';
+      updateBookUI();
+    }
+
+    function bookNext() {
+      if (bookFlipping || bookSpread >= Math.ceil(albumPhotos.length / 2) - 1) return;
+      bookFlipping = true;
+      const next  = bookSpread + 1;
+      const lIdx  = next * 2;
+      const rIdx  = next * 2 + 1;
+
+      const flapR = document.getElementById('flap-right');
+      renderBookPage(document.getElementById('flap-right-front'), bookSpread * 2 + 1);
+      renderBookPage(document.getElementById('flap-right-back'),  lIdx);
+
+      renderBookPage(document.getElementById('book-right-inner'), rIdx);
+      document.getElementById('page-num-right').textContent = rIdx < albumPhotos.length ? rIdx + 1 : '';
+
+      flapR.style.display    = 'block';
+      flapR.style.transition = 'none';
+      flapR.style.transform  = 'rotateY(0deg)';
+      void flapR.offsetWidth;
+      flapR.style.transition = 'transform 0.7s cubic-bezier(0.4,0,0.2,1)';
+      flapR.style.transform  = 'rotateY(-180deg)';
+
+      setTimeout(() => {
+        renderBookPage(document.getElementById('book-left-inner'), lIdx);
+        document.getElementById('page-num-left').textContent = lIdx + 1;
+        flapR.style.display = 'none';
+        bookSpread = next;
+        updateBookUI();
+        bookFlipping = false;
+      }, 710);
+    }
+
+    function bookPrev() {
+      if (bookFlipping || bookSpread <= 0) return;
+      bookFlipping = true;
+      const prev  = bookSpread - 1;
+      const lIdx  = prev * 2;
+      const rIdx  = prev * 2 + 1;
+
+      const flapL = document.getElementById('flap-left');
+      renderBookPage(document.getElementById('flap-left-front'), bookSpread * 2);
+      renderBookPage(document.getElementById('flap-left-back'),  rIdx);
+
+      renderBookPage(document.getElementById('book-left-inner'), lIdx);
+      document.getElementById('page-num-left').textContent = lIdx + 1;
+
+      flapL.style.display    = 'block';
+      flapL.style.transition = 'none';
+      flapL.style.transform  = 'rotateY(0deg)';
+      void flapL.offsetWidth;
+      flapL.style.transition = 'transform 0.7s cubic-bezier(0.4,0,0.2,1)';
+      flapL.style.transform  = 'rotateY(180deg)';
+
+      setTimeout(() => {
+        renderBookPage(document.getElementById('book-right-inner'), rIdx);
+        document.getElementById('page-num-right').textContent = rIdx < albumPhotos.length ? rIdx + 1 : '';
+        flapL.style.display = 'none';
+        bookSpread = prev;
+        updateBookUI();
+        bookFlipping = false;
+      }, 710);
+    }
+
     /* ── Dades dels events ── */
     const events = [
       { title:'Castanyada',  start:'2025-10-25', image:'img/cartell-castanyada.jpg',  location:'Plaça Nova i voltants',          time:'17:30 - 20:30',             description:'Castanyada tradicional' },
@@ -292,7 +545,15 @@
         description:"El proper 23 d'abril, Diada de Sant Jordi 🌹, rebrem la flama del @correllengua_ a la Cala. 🏃‍♂️🔥\n\nDegut a aquest fet tan excepcional, les entitats culturals caleres, conjuntament amb l'organització local del Correllengua, hem organitzat una jornada plena de música i cultura. ✨🎭🎶🎬\n\nUs convidem a gaudir d'aquesta festa per la llengua 💗 amb tots nosaltres al 📍 Parc del Bon Repòs, a partir de les 16:00 h i fins a les 20:00 h.\n\nLa llengua ets tu i som tots!!!\n\n#correllenguaagermanat #llenguacatalana #cultura #musica #festesametllademar" },
       { title:'Passaparaula', start:'2026-04-23', image:'img/cartell-passaparaula.jpg', location:'Parc del Bon Repòs', time:'Tarda',
         description:"Els Quintos t'animem a participar a la nostra activitat del passaparaula la tarda del 23 d'abril al parc del Bon Repòs. A més, els guanyadors podran gaudir de diversos premis (limitats). Vine i posa a prova el teu català!" },
-      { title:'Sant Jordi', start:'2026-04-26', image:'img/cartell-santjordi.jpg', location:'Castell de Sant Jordi', time:'Tot el dia', description:'' }
+      { title:'Sant Jordi', start:'2026-04-26', image:'img/cartell-santjordi.jpg', location:'Castell de Sant Jordi', time:'Tot el dia', description:'' },
+      { title:'Batucada', start:'2026-05-16', image:'img/cartell-batucada.jpg', location:'Parc del Bon Repòs', time:'18:00 – 21:00 h',
+        description:'🥁 Aquest dissabte 16 de maig us esperem a la Trobada de Batucades al Parc del Bon Repòs!
+
+Durant tot l'acte tindrem servei de barra 🍻 perquè no falti de res mentre gaudim del ritme i l'ambient 🔥
+
+I a partir de les 18 h… continuem la festa amb un tardeo a càrrec de DJ Nex 🎧
+
+Vine a xalar amb nosaltres!' }
     ];
 
     /* ── Compte enrere amb animació flip ── */
@@ -308,19 +569,19 @@
     }
 
     function updateCountdown() {
-      const target = new Date('2026-04-23T16:00:00').getTime();
+      const target = new Date('2026-05-16T18:00:00').getTime();
       const now    = new Date().getTime();
       const diff   = target - now;
 
       if (diff <= 0) {
-        document.getElementById('event-name').textContent = 'Correllengua en curs! 🔥';
+        document.getElementById('event-name').textContent = 'Batucada en curs! 🥁';
         document.getElementById('event-date').textContent = 'Ja està aquí!';
         ['days','hours','minutes','seconds'].forEach(id => setFlip(id, '0'));
         return;
       }
 
-      document.getElementById('event-name').textContent = 'Correllengua – Diada de Sant Jordi 🌹';
-      document.getElementById('event-date').textContent = '23 d\'abril · 16:00 h · Parc del Bon Repòs';
+      document.getElementById('event-name').textContent = 'Trobada de Batucades 🥁';
+      document.getElementById('event-date').textContent = '16 de maig · 18:00 h · Parc del Bon Repòs';
       setFlip('days',    Math.floor(diff / 86400000));
       setFlip('hours',   Math.floor((diff % 86400000) / 3600000));
       setFlip('minutes', Math.floor((diff % 3600000)  / 60000));
@@ -328,6 +589,9 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+
+      /* ── Àlbum ── */
+      loadAlbum();
 
       /* ── Novetats ── */
       initNovetats();
