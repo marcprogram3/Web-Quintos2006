@@ -254,33 +254,6 @@
     /* ── Novetats carrusel ── */
     const novetats = [
       {
-        img:      'img/cartell-correllengua.jpg',
-        alt:      'Correllengua – Sant Jordi',
-        title:    'Correllengua – Diada de Sant Jordi 🌹',
-        date:     "23 d'abril",
-        time:     '16:00 – 20:00 h',
-        location: 'Parc del Bon Repòs',
-        desc:     "El proper 23 d'abril, Diada de Sant Jordi 🌹, rebrem la flama del @correllengua_ a la Cala. 🏃‍♂️🔥 Les entitats culturals caleres us conviden a una jornada plena de música i cultura per la llengua! 💗"
-      },
-      {
-        img:      'img/cartell-passaparaula.jpg',
-        alt:      'Passaparaula',
-        title:    "Passaparaula – 23 d'abril",
-        date:     "23 d'abril",
-        time:     'Tarda',
-        location: 'Parc del Bon Repòs',
-        desc:     "Els Quintos t'animem a participar a la nostra activitat del passaparaula la tarda del 23 d'abril al parc del Bon Repòs. A més, els guanyadors podran gaudir de diversos premis (limitats). Vine i posa a prova el teu català!"
-      },
-      {
-        img:      'img/cartell-santjordi.jpg',
-        alt:      'Sant Jordi',
-        title:    "Sant Jordi – 26 d'abril",
-        date:     "26 d'abril",
-        time:     'Tot el dia',
-        location: 'Castell de Sant Jordi',
-        desc:     ''
-      },
-      {
         img:      'img/cartell-batucada.jpg',
         alt:      'Batucada',
         title:    "Trobada de Batucades 🥁",
@@ -318,7 +291,12 @@
         <button class="novetat-dot${i === 0 ? ' active' : ''}" onclick="goNovetat(${i})"></button>
       `).join('');
 
-      novetatsTimer = setInterval(() => goNovetat((novetatsIdx + 1) % novetats.length), 5000);
+      if (novetats.length < 2) {
+        dotsEl.style.display = 'none';
+      }
+      if (novetats.length > 1) {
+        novetatsTimer = setInterval(() => goNovetat((novetatsIdx + 1) % novetats.length), 5000);
+      }
     }
 
     function goNovetat(idx) {
